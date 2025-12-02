@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>Save tokens. Write better prompts. Supercharge your AI conversations.</strong>
+  <strong>Save tokens. Write better prompts. HaKC All the things</strong>
 </p>
 
 <p align="center">
