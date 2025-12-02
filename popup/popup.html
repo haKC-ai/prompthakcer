@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptForge</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- ASCII Banner -->
+    <pre class="ascii-banner">░▒█▀▀█░█▀▀▄░▄▀▀▄░█▀▄▀█░▄▀▀▄░▀█▀░░░▒█▀▀▀░▄▀▀▄░█▀▀▄░█▀▀▀░█▀▀
+░▒█▄▄█░█▄▄▀░█░░█░█░▀░█░█▄▄█░░█░░░░▒█▀▀░░█░░█░█▄▄▀░█░▀▄░█▀▀
+░▒█░░░░▀░▀▀░░▀▀░░▀░░▒▀░█░░░░░▀░░░░▒█░░░░░▀▀░░▀░▀▀░▀▀▀▀░▀▀▀</pre>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+        <span>PromptForge</span>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="historyBtn" title="View History">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </button>
+        <button class="icon-btn" id="settingsBtn" title="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="optimize">Optimize</button>
+      <button class="tab" data-tab="history">History</button>
+      <button class="tab" data-tab="learn">Learn</button>
+    </nav>
+
+    <!-- Optimize Tab -->
+    <main class="tab-content active" id="optimize-tab">
+      <!-- Compression Level Selector -->
+      <div class="compression-selector">
+        <label>Compression Level:</label>
+        <div class="compression-options">
+          <button class="compression-btn" data-level="minimal" title="Light touch">1</button>
+          <button class="compression-btn active" data-level="balanced" title="Recommended">2</button>
+          <button class="compression-btn" data-level="aggressive" title="Maximum compression">3</button>
+          <button class="compression-btn" data-level="maximum" title="Extreme (may alter meaning)">4</button>
+        </div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="enableDeepCompression">
+          <span>Enable deep compression</span>
+        </label>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-section">
+        <label for="promptInput">Your Prompt:</label>
+        <textarea id="promptInput" placeholder="Paste or type your prompt here...&#10;&#10;Example: I was wondering if you could please help me write a detailed blog post about the importance of healthy eating habits. I would really appreciate it if you could include some tips and examples."></textarea>
+        <div class="input-actions">
+          <button class="btn btn-secondary" id="pasteBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Paste
+          </button>
+          <button class="btn btn-secondary" id="clearBtn">Clear</button>
+          <span class="char-count" id="inputCount">0 chars</span>
+        </div>
+      </div>
+
+      <!-- Optimize Button -->
+      <button class="btn btn-primary btn-large" id="optimizeBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+        Optimize Prompt
+      </button>
+
+      <!-- Results Section (hidden initially) -->
+      <div class="results-section" id="resultsSection" style="display: none;">
+        <!-- Stats -->
+        <div class="stats-bar">
+          <div class="stat">
+            <span class="stat-value" id="tokensSaved">0</span>
+            <span class="stat-label">tokens saved</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="percentSaved">0%</span>
+            <span class="stat-label">reduction</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="rulesApplied">0</span>
+            <span class="stat-label">rules</span>
+          </div>
+        </div>
+
+        <!-- Optimized Output -->
+        <div class="output-section">
+          <div class="output-header">
+            <label>Optimized Prompt:</label>
+            <span class="char-count" id="outputCount">0 chars</span>
+          </div>
+          <div class="output-text" id="optimizedOutput" contenteditable="true"></div>
+          <div class="output-actions">
+            <button class="btn btn-primary" id="copyBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copy
+            </button>
+            <button class="btn btn-secondary" id="viewChangesBtn">View Changes</button>
+          </div>
+        </div>
+
+        <!-- Applied Rules (collapsible) -->
+        <details class="rules-details">
+          <summary>
+            <span>Applied Optimizations</span>
+            <span class="rules-count" id="rulesCount">0</span>
+          </summary>
+          <div class="rules-list" id="rulesList"></div>
+        </details>
+      </div>
+    </main>
+
+    <!-- History Tab -->
+    <main class="tab-content" id="history-tab">
+      <div class="history-controls">
+        <input type="search" id="historySearch" placeholder="Search history...">
+        <button class="btn btn-secondary btn-small" id="clearHistoryBtn">Clear All</button>
+      </div>
+      <div class="history-list" id="historyList">
+        <div class="empty-state">
+          <span class="empty-icon">[H]</span>
+          <p>No optimization history yet.</p>
+          <p class="empty-hint">Your optimizations will appear here so you can learn from them.</p>
+        </div>
+      </div>
+      <div class="history-stats" id="historyStats"></div>
+    </main>
+
+    <!-- Learn Tab -->
+    <main class="tab-content" id="learn-tab">
+      <div class="learn-section">
+        <h3>Prompt Engineering Tips</h3>
+        <div class="tips-list">
+          <div class="tip">
+            <strong>Be Direct</strong>
+            <p>Skip pleasantries. "Write a poem about spring" works as well as "Could you please write me a poem about spring?"</p>
+          </div>
+          <div class="tip">
+            <strong>Remove Self-References</strong>
+            <p>Instead of "I want you to explain...", just say "Explain..."</p>
+          </div>
+          <div class="tip">
+            <strong>Avoid Hedging</strong>
+            <p>Words like "maybe", "perhaps", "possibly" weaken your prompt. Be confident.</p>
+          </div>
+          <div class="tip">
+            <strong>Use Clear Structure</strong>
+            <p>Format: [Task]: [Details]. Example: "Summarize: The history of Rome in 3 paragraphs"</p>
+          </div>
+          <div class="tip">
+            <strong>Condense Phrases</strong>
+            <p>"in order to" → "to", "due to the fact that" → "because", "at this point in time" → "now"</p>
+          </div>
+        </div>
+        <button class="btn btn-secondary" id="viewAllTipsBtn">View All Tips in Settings</button>
+      </div>
+    </main>
+
+    <!-- Changes Modal -->
+    <div class="modal" id="changesModal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Changes Made</h3>
+          <button class="close-btn" id="closeChangesModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="diff-container" id="diffContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Entry Modal -->
+    <div class="modal" id="historyModal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>History Entry</h3>
+          <button class="close-btn" id="closeHistoryModal">&times;</button>
+        </div>
+        <div class="modal-body" id="historyModalBody"></div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="deleteEntryBtn">Delete</button>
+          <button class="btn btn-primary" id="reuseEntryBtn">Use Original</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="../lib/rules-engine.js"></script>
+  <script src="../lib/history-manager.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

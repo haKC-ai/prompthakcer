@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptForge Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+        <div class="logo-text">
+          <h1>PromptForge</h1>
+          <span class="version">v1.0.0</span>
+        </div>
+      </div>
+      <p class="tagline">AI Prompt Optimizer - Save tokens, write better prompts</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+      <button class="nav-btn active" data-section="general">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        General
+      </button>
+      <button class="nav-btn" data-section="sites">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        Sites
+      </button>
+      <button class="nav-btn" data-section="rules">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        </svg>
+        Rules
+      </button>
+      <button class="nav-btn" data-section="custom">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="16"/>
+          <line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+        Custom Rules
+      </button>
+      <button class="nav-btn" data-section="data">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        Data
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- General Settings -->
+      <section class="section active" id="general-section">
+        <h2 class="section-title">General Settings</h2>
+        
+        <div class="card">
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Enable PromptForge</label>
+              <span class="setting-desc">Toggle the extension on/off globally</span>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="enabled" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Default Compression</label>
+              <span class="setting-desc">Default compression level for new optimizations</span>
+            </div>
+            <select id="compressionPreset">
+              <option value="none">None (formatting only)</option>
+              <option value="light">Light</option>
+              <option value="medium" selected>Medium (recommended)</option>
+              <option value="heavy">Heavy</option>
+              <option value="maximum">Maximum</option>
+            </select>
+          </div>
+          
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Show Notifications</label>
+              <span class="setting-desc">Show desktop notifications for optimizations</span>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="showNotifications" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Auto-save History</label>
+              <span class="setting-desc">Automatically save all optimizations to history</span>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="autoSaveHistory" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        
+        <h3 class="subsection-title">Keyboard Shortcuts</h3>
+        <div class="card">
+          <div class="shortcut-row">
+            <div class="shortcut-keys">
+              <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd>
+            </div>
+            <span class="shortcut-desc">Optimize current prompt on AI chat page</span>
+          </div>
+          <div class="shortcut-row">
+            <div class="shortcut-keys">
+              <kbd>Alt</kbd> + <kbd>P</kbd>
+            </div>
+            <span class="shortcut-desc">Open PromptForge popup</span>
+          </div>
+          <p class="shortcut-note">
+            To customize shortcuts, visit <a href="chrome://extensions/shortcuts" id="shortcutsLink">chrome://extensions/shortcuts</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Sites Settings -->
+      <section class="section" id="sites-section">
+        <h2 class="section-title">Supported Sites</h2>
+        <p class="section-desc">Configure which AI chat sites PromptForge will activate on</p>
+        
+        <div class="card">
+          <div class="sites-list" id="sitesList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+        
+        <h3 class="subsection-title">Add Custom Site</h3>
+        <div class="card">
+          <div class="form-group">
+            <label for="customSiteName">Site Name</label>
+            <input type="text" id="customSiteName" placeholder="e.g., My AI Chat">
+          </div>
+          <div class="form-group">
+            <label for="customSiteIcon">Icon (emoji)</label>
+            <input type="text" id="customSiteIcon" placeholder="e.g., GPT" maxlength="2">
+          </div>
+          <div class="form-group">
+            <label for="customSitePatterns">URL Patterns (comma-separated)</label>
+            <input type="text" id="customSitePatterns" placeholder="e.g., myai.com, chat.myai.com">
+            <span class="form-hint">Enter domain patterns that identify this site</span>
+          </div>
+          <div class="form-group">
+            <label for="customSiteSelectors">Input Selectors (comma-separated)</label>
+            <input type="text" id="customSiteSelectors" placeholder="e.g., textarea, div[contenteditable]">
+            <span class="form-hint">CSS selectors for the chat input field</span>
+          </div>
+          <button class="btn btn-primary" id="addSiteBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add Site
+          </button>
+        </div>
+      </section>
+
+      <!-- Rules Settings -->
+      <section class="section" id="rules-section">
+        <h2 class="section-title">Optimization Rules</h2>
+        <p class="section-desc">Enable or disable individual optimization rules</p>
+        
+        <div class="rules-header">
+          <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="formatting">Formatting</option>
+            <option value="fluff">Fluff Removal</option>
+            <option value="redundancy">Redundancy</option>
+            <option value="qualifiers">Qualifiers</option>
+            <option value="verbosity">Verbosity</option>
+            <option value="structure">Structure</option>
+            <option value="aggressive">Aggressive</option>
+            <option value="custom">Custom Rules</option>
+          </select>
+          <button class="btn btn-secondary" id="resetRulesBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            Reset to Defaults
+          </button>
+        </div>
+        
+        <div class="card">
+          <div class="rules-list" id="rulesList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Rules -->
+      <section class="section" id="custom-section">
+        <h2 class="section-title">Custom Rules</h2>
+        <p class="section-desc">Create your own optimization rules using regex patterns</p>
+        
+        <div class="card">
+          <div class="form-group">
+            <label for="customRuleName">Rule Name</label>
+            <input type="text" id="customRuleName" placeholder="e.g., Remove Emoji">
+          </div>
+          <div class="form-group">
+            <label for="customRuleDesc">Description</label>
+            <input type="text" id="customRuleDesc" placeholder="e.g., Removes all emoji characters">
+          </div>
+          <div class="form-group">
+            <label for="customRulePattern">Pattern (Regex)</label>
+            <input type="text" id="customRulePattern" placeholder="e.g., [\u{1F600}-\u{1F6FF}]">
+            <span class="form-hint">JavaScript regex syntax without delimiters</span>
+          </div>
+          <div class="form-group">
+            <label for="customRuleReplace">Replace With</label>
+            <input type="text" id="customRuleReplace" placeholder="Leave empty to remove">
+          </div>
+          <div class="form-group">
+            <label for="customRuleFlags">Regex Flags</label>
+            <input type="text" id="customRuleFlags" value="gi" placeholder="gi">
+            <span class="form-hint">g = global, i = case-insensitive, u = unicode</span>
+          </div>
+          <button class="btn btn-primary" id="addRuleBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add Custom Rule
+          </button>
+        </div>
+        
+        <h3 class="subsection-title">Test Your Rules</h3>
+        <div class="card">
+          <div class="form-group">
+            <label for="testInput">Test Input</label>
+            <textarea id="testInput" rows="4" placeholder="I was wondering if you could please help me with something. I would really appreciate it if you could provide a detailed explanation."></textarea>
+          </div>
+          <button class="btn btn-secondary" id="testRulesBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            Test Optimization
+          </button>
+          <div class="test-results" id="testResults" style="display: none;">
+            <div class="test-stats" id="testStats"></div>
+            <div class="form-group">
+              <label>Optimized Output</label>
+              <div class="test-output" id="testOutput"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Management -->
+      <section class="section" id="data-section">
+        <h2 class="section-title">Data Management</h2>
+        <p class="section-desc">Export, import, or clear your PromptForge data</p>
+        
+        <div class="card">
+          <h3 class="card-title">History</h3>
+          <div class="data-stats" id="dataStats">
+            <div class="data-stat">
+              <span class="data-stat-value" id="historyCount">0</span>
+              <span class="data-stat-label">Saved Prompts</span>
+            </div>
+            <div class="data-stat">
+              <span class="data-stat-value" id="totalTokensSaved">0</span>
+              <span class="data-stat-label">Total Tokens Saved</span>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-secondary" id="exportHistoryBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Export History
+            </button>
+            <button class="btn btn-secondary" id="importHistoryBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              Import History
+            </button>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
+          </div>
+        </div>
+        
+        <div class="card card-danger">
+          <h3 class="card-title">Danger Zone</h3>
+          <p class="card-desc">These actions cannot be undone</p>
+          <div class="btn-group">
+            <button class="btn btn-danger" id="clearHistoryBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              </svg>
+              Clear All History
+            </button>
+            <button class="btn btn-danger" id="resetAllBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+              </svg>
+              Reset All Settings
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Made with care for efficient prompting</p>
+      <div class="footer-links">
+        <a href="https://github.com/haKC-ai/promptforge" target="_blank">GitHub</a>
+        <span>•</span>
+        <a href="#" id="feedbackLink">Send Feedback</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="../lib/rules-engine.js"></script>
+  <script src="../lib/site-detector.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
