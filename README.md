@@ -19,6 +19,138 @@
 
 ---
 
+<img width="1884" height="996" alt="Screenshot 2025-12-02 at 3 10 48 PM" src="https://github.com/user-attachments/assets/fa358f7c-dc0b-4db3-8e21-ca98bdda44f1" />
+
+## How It Works
+
+```mermaid
+flowchart TB
+    subgraph User["👤 User"]
+        A[Type prompt in AI chat]
+        B[Click PromptForge button]
+        C[Use popup standalone]
+    end
+
+    subgraph Detection["🔍 Site Detection"]
+        D[SiteDetector]
+        D --> |Matches URL pattern| E[Identify AI Platform]
+        E --> F[Find input elements]
+    end
+
+    subgraph Engine["⚡ Rules Engine"]
+        G[Load compression level]
+        H[Apply 30+ optimization rules]
+        I[Calculate token savings]
+
+        G --> H --> I
+
+        subgraph Rules["📋 Rule Categories"]
+            R1[Fluff Removal]
+            R2[Redundancy Elimination]
+            R3[Structure Optimization]
+            R4[Whitespace Cleanup]
+            R5[Custom User Rules]
+        end
+
+        H --> Rules
+    end
+
+    subgraph Output["📤 Output"]
+        J[Show optimized prompt]
+        K[Display stats]
+        L[Save to history]
+    end
+
+    A --> B --> D
+    C --> G
+    F --> G
+    I --> J
+    I --> K
+    J --> L
+
+    subgraph Storage["💾 Local Storage"]
+        M[(History)]
+        N[(Settings)]
+        O[(Custom Rules)]
+    end
+
+    L --> M
+    G --> N
+    Rules --> O
+```
+
+### Data Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant CS as Content Script
+    participant SD as SiteDetector
+    participant RE as RulesEngine
+    participant HM as HistoryManager
+    participant ST as Chrome Storage
+
+    U->>CS: Click forge button
+    CS->>SD: getCurrentSite()
+    SD-->>CS: Site config + selectors
+    CS->>CS: getInputText()
+    CS->>RE: analyze(text, options)
+    RE->>RE: Apply compression rules
+    RE->>RE: Calculate statistics
+    RE-->>CS: {optimized, stats, appliedRules}
+    CS->>U: Show optimization modal
+    U->>CS: Click "Apply"
+    CS->>CS: setInputText(optimized)
+    CS->>HM: addEntry(historyData)
+    HM->>ST: Save to chrome.storage
+    ST-->>HM: Confirmed
+    CS->>U: Toast "Prompt optimized!"
+```
+
+### Architecture Overview
+
+```mermaid
+graph LR
+    subgraph Browser["Chrome Browser"]
+        subgraph Extension["PromptForge Extension"]
+            SW[Service Worker]
+            POP[Popup UI]
+            OPT[Options Page]
+            CS[Content Scripts]
+        end
+
+        subgraph Libraries["Shared Libraries"]
+            RE[rules-engine.js]
+            SD[site-detector.js]
+            HM[history-manager.js]
+        end
+
+        subgraph Sites["AI Chat Sites"]
+            GPT[ChatGPT]
+            CL[Claude]
+            GEM[Gemini]
+            OTHER[Other AI Chats...]
+        end
+    end
+
+    POP --> RE
+    POP --> HM
+    OPT --> RE
+    OPT --> SD
+    CS --> RE
+    CS --> SD
+    CS --> HM
+
+    CS -.->|Inject button| GPT
+    CS -.->|Inject button| CL
+    CS -.->|Inject button| GEM
+    CS -.->|Inject button| OTHER
+
+    SW -->|Context menu| CS
+    SW -->|Messages| POP
+```
+
+---
 ## Features
 
 ### Smart Prompt Optimization
@@ -179,136 +311,7 @@ Customize shortcuts at `chrome://extensions/shortcuts`
 
 ---
 
-## How It Works
 
-```mermaid
-flowchart TB
-    subgraph User["👤 User"]
-        A[Type prompt in AI chat]
-        B[Click PromptForge button]
-        C[Use popup standalone]
-    end
-
-    subgraph Detection["🔍 Site Detection"]
-        D[SiteDetector]
-        D --> |Matches URL pattern| E[Identify AI Platform]
-        E --> F[Find input elements]
-    end
-
-    subgraph Engine["⚡ Rules Engine"]
-        G[Load compression level]
-        H[Apply 30+ optimization rules]
-        I[Calculate token savings]
-
-        G --> H --> I
-
-        subgraph Rules["📋 Rule Categories"]
-            R1[Fluff Removal]
-            R2[Redundancy Elimination]
-            R3[Structure Optimization]
-            R4[Whitespace Cleanup]
-            R5[Custom User Rules]
-        end
-
-        H --> Rules
-    end
-
-    subgraph Output["📤 Output"]
-        J[Show optimized prompt]
-        K[Display stats]
-        L[Save to history]
-    end
-
-    A --> B --> D
-    C --> G
-    F --> G
-    I --> J
-    I --> K
-    J --> L
-
-    subgraph Storage["💾 Local Storage"]
-        M[(History)]
-        N[(Settings)]
-        O[(Custom Rules)]
-    end
-
-    L --> M
-    G --> N
-    Rules --> O
-```
-
-### Data Flow
-
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant CS as Content Script
-    participant SD as SiteDetector
-    participant RE as RulesEngine
-    participant HM as HistoryManager
-    participant ST as Chrome Storage
-
-    U->>CS: Click forge button
-    CS->>SD: getCurrentSite()
-    SD-->>CS: Site config + selectors
-    CS->>CS: getInputText()
-    CS->>RE: analyze(text, options)
-    RE->>RE: Apply compression rules
-    RE->>RE: Calculate statistics
-    RE-->>CS: {optimized, stats, appliedRules}
-    CS->>U: Show optimization modal
-    U->>CS: Click "Apply"
-    CS->>CS: setInputText(optimized)
-    CS->>HM: addEntry(historyData)
-    HM->>ST: Save to chrome.storage
-    ST-->>HM: Confirmed
-    CS->>U: Toast "Prompt optimized!"
-```
-
-### Architecture Overview
-
-```mermaid
-graph LR
-    subgraph Browser["Chrome Browser"]
-        subgraph Extension["PromptForge Extension"]
-            SW[Service Worker]
-            POP[Popup UI]
-            OPT[Options Page]
-            CS[Content Scripts]
-        end
-
-        subgraph Libraries["Shared Libraries"]
-            RE[rules-engine.js]
-            SD[site-detector.js]
-            HM[history-manager.js]
-        end
-
-        subgraph Sites["AI Chat Sites"]
-            GPT[ChatGPT]
-            CL[Claude]
-            GEM[Gemini]
-            OTHER[Other AI Chats...]
-        end
-    end
-
-    POP --> RE
-    POP --> HM
-    OPT --> RE
-    OPT --> SD
-    CS --> RE
-    CS --> SD
-    CS --> HM
-
-    CS -.->|Inject button| GPT
-    CS -.->|Inject button| CL
-    CS -.->|Inject button| GEM
-    CS -.->|Inject button| OTHER
-
-    SW -->|Context menu| CS
-    SW -->|Messages| POP
-```
-
----
 
 ## Project Structure
 
