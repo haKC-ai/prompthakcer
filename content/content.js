@@ -500,7 +500,12 @@ class PromptForge {
         }
       });
     } catch (e) {
-      console.log('Could not save to history:', e);
+      // Extension was reloaded - prompt user to refresh
+      if (e.message?.includes('Extension context invalidated')) {
+        this.showToast('Extension updated - please refresh the page');
+      } else {
+        console.log('Could not save to history:', e);
+      }
     }
     
     this.hideModal();

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PromptForge - AI Prompt Optimizer",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Optimize AI prompts for efficiency. Reduce tokens, improve clarity, and learn better prompting. Works with any AI chat.",
   "permissions": [
     "storage",
