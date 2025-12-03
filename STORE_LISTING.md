@@ -5,9 +5,9 @@ Optimize AI prompts for ChatGPT, Claude, Gemini and more. Save tokens, learn bet
 
 ## Full Description
 
-PROMPTFORGE - THE ULTIMATE AI PROMPT OPTIMIZER
+PROMPTHAKCER - THE ULTIMATE AI PROMPT OPTIMIZER
 
-Save tokens, write better prompts, and supercharge your AI conversations with PromptForge - the most comprehensive prompt optimization extension for Chrome.
+Save tokens, write better prompts, and supercharge your AI conversations with PrompthaKCer - the most comprehensive prompt optimization extension for Chrome.
 
 --------------------------------------------------------------------------------
 KEY FEATURES
@@ -70,7 +70,7 @@ AFTER: "Explain machine learning with examples."
 HOW TO USE
 --------------------------------------------------------------------------------
 
-1. Install PromptForge
+1. Install PrompthaKCer
 2. Go to any AI chat (ChatGPT, Claude, etc.)
 3. Type your prompt
 4. Click the optimize button or press Ctrl+Shift+O
@@ -78,7 +78,7 @@ HOW TO USE
 6. Save tokens and get better responses!
 
 Or use standalone mode:
-1. Click the PromptForge icon
+1. Click the PrompthaKCer icon
 2. Paste your prompt
 3. Click Optimize
 4. Copy the result
@@ -95,7 +95,7 @@ PERFECT FOR
 
 --------------------------------------------------------------------------------
 
-Download PromptForge today and start writing better prompts!
+Download PrompthaKCer today and start writing better prompts!
 
 ## Category
 Productivity
