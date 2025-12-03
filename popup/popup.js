@@ -17,15 +17,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize engines
   rulesEngine = new RulesEngine();
   historyManager = new HistoryManager();
-  
+
   await Promise.all([
     rulesEngine.init(),
     historyManager.init()
   ]);
-  
-  // Check current tab
+
+  // Check current tab and inject scripts
   await checkCurrentTab();
-  
+
+  // Inject content scripts on current tab
+  if (currentTab?.id) {
+    try {
+      await chrome.runtime.sendMessage({ action: 'injectScripts', tabId: currentTab.id });
+    } catch (e) {
+      console.log('Could not inject scripts:', e);
+    }
+  }
+
   // Load settings
   await loadSettings();
   

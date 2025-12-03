@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PromptForge - AI Prompt Optimizer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Optimize AI prompts for efficiency. Reduce tokens, improve clarity, and learn better prompting. Works with any AI chat.",
   "permissions": [
     "storage",
@@ -10,19 +10,6 @@
     "clipboardWrite",
     "clipboardRead",
     "scripting"
-  ],
-  "host_permissions": [
-    "*://chat.openai.com/*",
-    "*://chatgpt.com/*",
-    "*://claude.ai/*",
-    "*://gemini.google.com/*",
-    "*://grok.x.ai/*",
-    "*://copilot.microsoft.com/*",
-    "*://perplexity.ai/*",
-    "*://www.perplexity.ai/*",
-    "*://poe.com/*",
-    "*://chat.deepseek.com/*",
-    "*://chat.mistral.ai/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -35,33 +22,6 @@
     "default_title": "PromptForge - Optimize Your Prompts"
   },
   "options_page": "options/options.html",
-  "content_scripts": [
-    {
-      "matches": [
-        "*://chat.openai.com/*",
-        "*://chatgpt.com/*",
-        "*://claude.ai/*",
-        "*://gemini.google.com/*",
-        "*://grok.x.ai/*",
-        "*://copilot.microsoft.com/*",
-        "*://perplexity.ai/*",
-        "*://www.perplexity.ai/*",
-        "*://poe.com/*",
-        "*://chat.deepseek.com/*",
-        "*://chat.mistral.ai/*"
-      ],
-      "js": [
-        "lib/rules-engine.js",
-        "lib/site-detector.js",
-        "lib/history-manager.js",
-        "content/content.js"
-      ],
-      "css": [
-        "content/modal.css"
-      ],
-      "run_at": "document_idle"
-    }
-  ],
   "background": {
     "service_worker": "background/service-worker.js"
   },
@@ -74,19 +34,7 @@
   "web_accessible_resources": [
     {
       "resources": ["content/modal.css", "icons/*", "lib/*", "content/content.js"],
-      "matches": [
-        "*://chat.openai.com/*",
-        "*://chatgpt.com/*",
-        "*://claude.ai/*",
-        "*://gemini.google.com/*",
-        "*://grok.x.ai/*",
-        "*://copilot.microsoft.com/*",
-        "*://perplexity.ai/*",
-        "*://www.perplexity.ai/*",
-        "*://poe.com/*",
-        "*://chat.deepseek.com/*",
-        "*://chat.mistral.ai/*"
-      ]
+      "matches": ["<all_urls>"]
     }
   ],
   "commands": {

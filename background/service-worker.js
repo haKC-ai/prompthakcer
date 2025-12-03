@@ -1,6 +1,6 @@
 /**
  * PromptForge Background Service Worker v2.0
- * Handles context menus, keyboard shortcuts, and history management
+ * Handles context menus, keyboard shortcuts, and dynamic script injection
  */
 
 // ============================================================================
@@ -16,7 +16,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
       showNotifications: true,
       autoSaveHistory: true
     });
-    
+
     await chrome.storage.local.set({
       promptHistory: [],
       totalStats: {
@@ -27,12 +27,75 @@ chrome.runtime.onInstalled.addListener(async (details) => {
         rulesApplied: {}
       }
     });
-    
+
     console.log('PromptForge installed and initialized');
   }
-  
+
   // Setup context menus
   setupContextMenus();
+});
+
+// ============================================================================
+// DYNAMIC SCRIPT INJECTION
+// ============================================================================
+
+async function injectContentScripts(tabId) {
+  try {
+    // Check if already injected
+    const results = await chrome.scripting.executeScript({
+      target: { tabId },
+      func: () => window.__PROMPTFORGE_INJECTED__
+    });
+
+    if (results[0]?.result) {
+      return true; // Already injected
+    }
+
+    // Inject CSS first
+    await chrome.scripting.insertCSS({
+      target: { tabId },
+      files: ['content/modal.css']
+    });
+
+    // Inject scripts in order
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['lib/rules-engine.js']
+    });
+
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['lib/site-detector.js']
+    });
+
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['lib/history-manager.js']
+    });
+
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['content/content.js']
+    });
+
+    // Mark as injected
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      func: () => { window.__PROMPTFORGE_INJECTED__ = true; }
+    });
+
+    return true;
+  } catch (e) {
+    console.log('Could not inject scripts:', e.message);
+    return false;
+  }
+}
+
+// Inject on extension icon click (popup open)
+chrome.action.onClicked.addListener(async (tab) => {
+  if (tab?.id) {
+    await injectContentScripts(tab.id);
+  }
 });
 
 // ============================================================================
@@ -48,28 +111,28 @@ function setupContextMenus() {
       title: 'Optimize with PromptForge',
       contexts: ['selection']
     });
-    
+
     // Copy optimized
     chrome.contextMenus.create({
       id: 'promptforge-copy',
       title: 'Optimize and Copy',
       contexts: ['selection']
     });
-    
+
     // Separator
     chrome.contextMenus.create({
       id: 'promptforge-separator',
       type: 'separator',
       contexts: ['selection']
     });
-    
+
     // Compression presets submenu
     chrome.contextMenus.create({
       id: 'promptforge-presets',
       title: 'Compression Level',
       contexts: ['selection']
     });
-    
+
     const presets = [
       { id: 'none', title: '[1] None (formatting only)' },
       { id: 'light', title: '[2] Light' },
@@ -77,7 +140,7 @@ function setupContextMenus() {
       { id: 'heavy', title: '[4] Heavy' },
       { id: 'maximum', title: '[5] Maximum' }
     ];
-    
+
     presets.forEach(preset => {
       chrome.contextMenus.create({
         id: `promptforge-preset-${preset.id}`,
@@ -92,28 +155,31 @@ function setupContextMenus() {
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   const selectedText = info.selectionText;
   if (!selectedText) return;
-  
+
   if (info.menuItemId === 'promptforge-optimize') {
-    // Send to content script to show modal
-    try {
-      await chrome.tabs.sendMessage(tab.id, {
-        action: 'optimizeText',
-        text: selectedText
-      });
-    } catch (e) {
-      // Content script not loaded, optimize in background and copy
-      const optimized = await optimizeInBackground(selectedText);
-      await copyToClipboard(optimized.optimized);
-      showNotification('Optimized & Copied!', `Saved ${optimized.stats.tokensSaved} tokens`);
+    // Try to inject and send to content script
+    if (tab?.id) {
+      await injectContentScripts(tab.id);
+      try {
+        await chrome.tabs.sendMessage(tab.id, {
+          action: 'optimizeText',
+          text: selectedText
+        });
+      } catch (e) {
+        // Content script not responding, optimize in background and copy
+        const optimized = await optimizeInBackground(selectedText);
+        await copyToClipboard(optimized.optimized);
+        showNotification('Optimized & Copied!', `Saved ${optimized.stats.tokensSaved} tokens`);
+      }
     }
   }
-  
+
   if (info.menuItemId === 'promptforge-copy') {
     const optimized = await optimizeInBackground(selectedText);
     await copyToClipboard(optimized.optimized);
     showNotification('Optimized & Copied!', `Saved ${optimized.stats.tokensSaved} tokens`);
   }
-  
+
   if (info.menuItemId.startsWith('promptforge-preset-')) {
     const preset = info.menuItemId.replace('promptforge-preset-', '');
     await chrome.storage.sync.set({ compressionPreset: preset });
@@ -129,10 +195,11 @@ chrome.commands.onCommand.addListener(async (command) => {
   if (command === 'optimize-prompt') {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (tab?.id) {
+      // Inject scripts first, then trigger
+      await injectContentScripts(tab.id);
       try {
         await chrome.tabs.sendMessage(tab.id, { action: 'triggerOptimize' });
       } catch (e) {
-        // Content script not loaded
         console.log('Content script not available');
       }
     }
@@ -150,24 +217,32 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 async function handleMessage(message, sender) {
   switch (message.action) {
+    case 'injectScripts':
+      // Request to inject from popup
+      if (message.tabId) {
+        const success = await injectContentScripts(message.tabId);
+        return { success };
+      }
+      return { success: false };
+
     case 'saveToHistory':
       return await saveToHistory(message.data);
-    
+
     case 'getHistory':
       return await getHistory(message.options);
-    
+
     case 'getStats':
       return await getStats();
-    
+
     case 'clearHistory':
       return await clearHistory();
-    
+
     case 'optimize':
       return await optimizeInBackground(message.text, message.options);
-    
+
     case 'updateStats':
       return await updateStats(message.stats);
-    
+
     default:
       return { error: 'Unknown action' };
   }
@@ -180,11 +255,11 @@ async function handleMessage(message, sender) {
 async function optimizeInBackground(text, options = {}) {
   const stored = await chrome.storage.sync.get(['compressionPreset', 'ruleSettings', 'customRules']);
   const preset = options.preset || stored.compressionPreset || 'medium';
-  
+
   // Simple rule-based optimization (subset of full engine for background use)
   let optimized = text;
   const appliedRules = [];
-  
+
   // Define compression levels
   const compressionLevels = {
     none: [],
@@ -193,9 +268,9 @@ async function optimizeInBackground(text, options = {}) {
     heavy: ['fluff', 'redundancy', 'qualifiers', 'verbosity', 'structure'],
     maximum: ['fluff', 'redundancy', 'qualifiers', 'verbosity', 'structure', 'aggressive']
   };
-  
+
   const enabledCategories = compressionLevels[preset] || compressionLevels.medium;
-  
+
   // Basic rules (simplified for background script)
   const rules = [
     // Fluff
@@ -207,34 +282,34 @@ async function optimizeInBackground(text, options = {}) {
     { category: 'fluff', find: /\bvery\s+/gi, replace: '' },
     { category: 'fluff', find: /\bactually,?\s*/gi, replace: '' },
     { category: 'fluff', find: /\bbasically,?\s*/gi, replace: '' },
-    
+
     // Redundancy
     { category: 'redundancy', find: /\bI want you to\s+/gi, replace: '' },
     { category: 'redundancy', find: /\bI need you to\s+/gi, replace: '' },
     { category: 'redundancy', find: /\bI'd like you to\s+/gi, replace: '' },
     { category: 'redundancy', find: /\bin order to\s+/gi, replace: 'to ' },
     { category: 'redundancy', find: /\bdue to the fact that\s+/gi, replace: 'because ' },
-    
+
     // Qualifiers
     { category: 'qualifiers', find: /\bperhaps\s+/gi, replace: '' },
     { category: 'qualifiers', find: /\bmaybe\s+/gi, replace: '' },
     { category: 'qualifiers', find: /\bI think (that\s+)?/gi, replace: '' },
     { category: 'qualifiers', find: /\bI believe (that\s+)?/gi, replace: '' },
-    
+
     // Verbosity
     { category: 'verbosity', find: /\bmake sure (that\s+)?/gi, replace: 'ensure ' },
     { category: 'verbosity', find: /\ba lot of\s+/gi, replace: 'many ' },
     { category: 'verbosity', find: /\bis able to\s+/gi, replace: 'can ' },
-    
+
     // Structure
     { category: 'structure', find: /\bI have a question(:|,)?\s*/gi, replace: '' },
     { category: 'structure', find: /\bprovide a detailed explanation of\s+/gi, replace: 'explain in detail: ' },
-    
+
     // Aggressive
     { category: 'aggressive', find: /\bfor example\b/gi, replace: 'e.g.' },
     { category: 'aggressive', find: /\bin other words\b/gi, replace: 'i.e.' }
   ];
-  
+
   // Apply enabled rules
   for (const rule of rules) {
     if (enabledCategories.includes(rule.category)) {
@@ -245,19 +320,19 @@ async function optimizeInBackground(text, options = {}) {
       }
     }
   }
-  
+
   // Cleanup whitespace
   optimized = optimized.replace(/\s{2,}/g, ' ').trim();
-  
+
   // Capitalize first letter
   if (optimized.length > 0) {
     optimized = optimized.charAt(0).toUpperCase() + optimized.slice(1);
   }
-  
+
   // Calculate stats
   const originalTokens = Math.ceil(text.length / 4);
   const optimizedTokens = Math.ceil(optimized.length / 4);
-  
+
   return {
     original: text,
     optimized,
@@ -290,7 +365,7 @@ async function saveToHistory(entry) {
       charactersSaved: 0,
       rulesApplied: {}
     };
-    
+
     // Create history entry
     const historyEntry = {
       id: `entry-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
@@ -304,21 +379,21 @@ async function saveToHistory(entry) {
       appliedRules: entry.appliedRules || [],
       compressionPreset: entry.compressionPreset || 'medium'
     };
-    
+
     // Add to history (limit to 500 entries)
     history.push(historyEntry);
     if (history.length > 500) {
       history.splice(0, history.length - 500);
     }
-    
+
     // Update stats
     stats.promptsOptimized++;
     if (entry.applied) stats.promptsApplied++;
     stats.tokensSaved += entry.stats?.tokensSaved || 0;
     stats.charactersSaved += entry.stats?.charsSaved || 0;
-    
+
     await chrome.storage.local.set({ promptHistory: history, totalStats: stats });
-    
+
     return { success: true, entry: historyEntry };
   } catch (e) {
     console.error('Error saving to history:', e);
@@ -329,20 +404,20 @@ async function saveToHistory(entry) {
 async function getHistory(options = {}) {
   const stored = await chrome.storage.local.get(['promptHistory']);
   let history = stored.promptHistory || [];
-  
+
   // Apply filters
   if (options.site) {
     history = history.filter(e => e.site === options.site);
   }
-  
+
   if (options.search) {
     const search = options.search.toLowerCase();
-    history = history.filter(e => 
+    history = history.filter(e =>
       e.original.toLowerCase().includes(search) ||
       e.optimized.toLowerCase().includes(search)
     );
   }
-  
+
   // Sort
   if (options.sortBy === 'oldest') {
     history.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
@@ -351,12 +426,12 @@ async function getHistory(options = {}) {
   } else {
     history.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   }
-  
+
   // Limit
   if (options.limit) {
     history = history.slice(0, options.limit);
   }
-  
+
   return history;
 }
 
@@ -372,7 +447,7 @@ async function getStats() {
 }
 
 async function clearHistory() {
-  await chrome.storage.local.set({ 
+  await chrome.storage.local.set({
     promptHistory: [],
     totalStats: {
       promptsOptimized: 0,
@@ -388,13 +463,13 @@ async function clearHistory() {
 async function updateStats(newStats) {
   const stored = await chrome.storage.local.get(['totalStats']);
   const stats = stored.totalStats || {};
-  
+
   Object.keys(newStats).forEach(key => {
     if (typeof newStats[key] === 'number') {
       stats[key] = (stats[key] || 0) + newStats[key];
     }
   });
-  
+
   await chrome.storage.local.set({ totalStats: stats });
   return stats;
 }
@@ -414,7 +489,7 @@ async function copyToClipboard(text) {
   } catch (e) {
     // Document might already exist
   }
-  
+
   // Fallback: write to storage for popup to handle
   await chrome.storage.local.set({ clipboardText: text });
   return true;
