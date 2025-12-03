@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "updated": "2024-12-03",
+  "version": "1.1.0",
+  "updated": "2025-12-03",
   "rules": [
     {
       "id": "remove-greetings",
@@ -12,17 +12,33 @@
       "category": "fluff",
       "priority": 5,
       "patterns": [
-        { "find": "^(hey|hi|hello|greetings)( there)?[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "^(hey|hi|hello|greetings|howdy|yo|sup|what's up|good morning|good afternoon|good evening)( there)?[!.,]?\\s*", "flags": "gi", "replace": "" },
         { "find": "\\bhope you'?r?e? (having|doing|feeling)[\\w\\s]*[!.]\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bhope (this finds you well|all is well|you'?r?e? well)[!.,]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bhave a (great|wonderful|nice|good|lovely) day[!.,]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bthanks (again|so much|a lot|in advance)[!.,]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bthank you (so much|very much|again|in advance)[!.,]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bsorry (for|about) the (long|lengthy) (message|email|text)[!.,]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bno pressure( though)?[!.,]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bonly if you want to[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bhope (this finds you well|all is well|you'?r?e? well|everything is going well)[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bhave a (great|wonderful|nice|good|lovely|fantastic|amazing) (day|one|evening|night)[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bthanks[!.,]?\\s*$", "flags": "gim", "replace": "" },
+        { "find": "\\bthank you[!.,]?\\s*$", "flags": "gim", "replace": "" },
+        { "find": "\\bthanks[!.,]?\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bthank you[!.,]?\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bthanks (again|so much|a lot|in advance|a bunch|a ton|for that|for this|for everything|for your help|for your time|for your assistance|for helping|a million|heaps|muchly)[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bthank you (so much|very much|again|in advance|for your time|for your help|for your assistance|for that|for this|for everything|kindly|ever so much)[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bthanks?,?\\s*-?\\s*[A-Z][a-z]+$", "flags": "gm", "replace": "" },
+        { "find": "\\bmany thanks[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bthx[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bty[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bthanking you[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bmuch appreciated[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bI appreciate (it|that|this|your help|your time|your assistance)[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bappreciate (it|that|this|your help|your time)[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bgreatly appreciated[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bsorry (for|about) the (long|lengthy|wordy) (message|email|text|prompt)[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bno pressure( though| at all)?[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bonly if you (want|have time|can|don't mind)[!.,]?\\s*", "flags": "gi", "replace": "" },
         { "find": "\\blet me know what you think[!.,]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bwhen you get a chance[!.,]?\\s*", "flags": "gi", "replace": "" }
+        { "find": "\\bwhen(ever)? you get a chance[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bhope (that makes sense|this helps|I explained it well)[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bdoes that make sense\\??\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\btake your time[!.,]?\\s*", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -36,7 +52,9 @@
       "priority": 10,
       "patterns": [
         { "find": "\\bplease\\s+", "flags": "gi", "replace": "" },
-        { "find": ",?\\s*please[!.,]?$", "flags": "gi", "replace": "" }
+        { "find": ",?\\s*please[!.,]?$", "flags": "gi", "replace": "" },
+        { "find": "\\bpretty please\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bif you please\\s*", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -49,12 +67,17 @@
       "category": "fluff",
       "priority": 11,
       "patterns": [
-        { "find": "\\bcould you (please\\s+)?", "flags": "gi", "replace": "" },
-        { "find": "\\bwould you (please\\s+)?(mind\\s+)?", "flags": "gi", "replace": "" },
+        { "find": "\\bcould you (please\\s+)?(kindly\\s+)?", "flags": "gi", "replace": "" },
+        { "find": "\\bwould you (please\\s+)?(mind\\s+)?(kindly\\s+)?", "flags": "gi", "replace": "" },
         { "find": "\\bcan you (please\\s+)?", "flags": "gi", "replace": "" },
         { "find": "\\bwill you (please\\s+)?", "flags": "gi", "replace": "" },
         { "find": "\\bmight you (be able to\\s+)?", "flags": "gi", "replace": "" },
-        { "find": "\\bif you (could|would|might)\\s+", "flags": "gi", "replace": "" }
+        { "find": "\\bif you (could|would|might|can|will)\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bwould it be possible (for you )?to\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bis it possible (for you )?to\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bdo you think you could\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bwould you be (so kind|willing|able) (as )?to\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bi was hoping (you could|that you might)\\s+", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -68,14 +91,18 @@
       "priority": 12,
       "patterns": [
         { "find": "\\bI would (really\\s+)?appreciate (it\\s+)?if you could\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bI('d| would) like (it\\s+)?if you could\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bI('d| would) (really\\s+)?like (it\\s+)?if you could\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bI was (kind of\\s+)?(maybe\\s+)?wondering if (you could|perhaps you might)\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bI was wondering if\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bif you don't mind,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bif (that's|it's) (ok|okay|alright|fine|not too much trouble),?\\s*", "flags": "gi", "replace": "" },
         { "find": "\\bif possible,?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bif it's not too much trouble[,.]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bwhen you (get|have) (a\\s+)?(chance|time),?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\band you have the time,?\\s*", "flags": "gi", "replace": "" }
+        { "find": "\\bif it's not too much (trouble|to ask)[,.]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bwhen(ever)? you (get|have) (a\\s+)?(chance|time|moment),?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\band you have the time,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bI'd be grateful if you could\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bit would be great if you could\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bit would mean a lot if you could\\s+", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -88,10 +115,14 @@
       "category": "fluff",
       "priority": 13,
       "patterns": [
-        { "find": "\\bI don't want to be a bother( or anything)?[,.]?\\s*(but\\s+)?", "flags": "gi", "replace": "" },
-        { "find": "\\bsorry to (bother|trouble|bug) you[,.]?\\s*(but\\s+)?", "flags": "gi", "replace": "" },
-        { "find": "\\bsorry (if this is|for being)[^.,!]*[.,!]?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bI (hope|don't want to) (this isn't|be)[^.,!]*[.,!]?\\s*", "flags": "gi", "replace": "" }
+        { "find": "\\bI don't want to be a (bother|nuisance|pain)( or anything)?[,.]?\\s*(but\\s+)?", "flags": "gi", "replace": "" },
+        { "find": "\\bsorry to (bother|trouble|bug|disturb|interrupt) you[,.]?\\s*(but\\s+)?", "flags": "gi", "replace": "" },
+        { "find": "\\bsorry (if this is|for being|for asking|to ask|for the)[^.,!]*[.,!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bI (hope|don't want to) (this isn't|be|waste your)[^.,!]*[.,!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bapologies (for|if)[^.,!]*[.,!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bpardon (me|my)[^.,!]*[.,!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bexcuse (me|my)[^.,!]*[.,!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bI know (this is|you're busy|I'm asking a lot)[^.,!]*[.,!]?\\s*(but\\s+)?", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -111,12 +142,22 @@
         { "find": "\\bliterally\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bsimply\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bhonestly,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bfrankly,?\\s*", "flags": "gi", "replace": "" },
         { "find": "\\bkind of\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bsort of\\s+", "flags": "gi", "replace": "" },
         { "find": "\\ba little (bit\\s+)?", "flags": "gi", "replace": "" },
         { "find": "\\babsolutely\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bdefinitely\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bcertainly\\s+", "flags": "gi", "replace": "" },
         { "find": "\\banyway,?\\s*", "flags": "gi", "replace": "" },
-        { "find": "\\bso,\\s+", "flags": "gi", "replace": "" }
+        { "find": "\\banyways,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bso,\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bwell,\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\blike,\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\byou know,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bi mean,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\btotally\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bcompletely\\s+", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -129,10 +170,13 @@
       "category": "fluff",
       "priority": 16,
       "patterns": [
-        { "find": "\\bit would be (really\\s+)?(cool|nice|great|awesome) if you could\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bit might be (nice|good|helpful) (if|to)\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bI was thinking that (maybe,?\\s*)?", "flags": "gi", "replace": "" },
-        { "find": "\\bmaybe,?\\s*just\\s*maybe,?\\s*", "flags": "gi", "replace": "" }
+        { "find": "\\bit would be (really\\s+)?(cool|nice|great|awesome|amazing|helpful|fantastic) if you could\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bit (might|would) be (nice|good|helpful|useful) (if|to)\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bI was thinking (that )?(maybe,?\\s*)?", "flags": "gi", "replace": "" },
+        { "find": "\\bmaybe,?\\s*just\\s*maybe,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bif it's not too much (trouble|to ask)\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bno worries if (you can't|not)[^.,]*[.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bit's (totally )?fine if (you can't|not)[^.,]*[.,]?\\s*", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -146,7 +190,47 @@
       "priority": 20,
       "patterns": [
         { "find": "\\bI (want|need|would like|'d like) you to\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bI (want|need|am looking for)\\s+", "flags": "gi", "replace": "" }
+        { "find": "\\bI (want|need|am looking for|am trying to get)\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bI('m| am) (trying|looking|hoping|wanting|needing) to\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bwhat I need is\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bwhat I('m| am) looking for is\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bI('m| am) asking (you )?(to|for)\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bmy (request|ask|question) is\\s+", "flags": "gi", "replace": "" }
+      ]
+    },
+    {
+      "id": "remove-ai-awareness",
+      "name": "Remove AI Awareness",
+      "description": "Removes \"As an AI\", \"You are an AI\"",
+      "explanation": "The AI knows what it is - stating this wastes tokens.",
+      "example": { "before": "As an AI, you can...", "after": "You can..." },
+      "enabled": true,
+      "category": "redundancy",
+      "priority": 21,
+      "patterns": [
+        { "find": "\\bAs an AI( language model| assistant| chatbot)?,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bYou are an AI( language model| assistant| chatbot)?,?\\s*(so\\s+)?", "flags": "gi", "replace": "" },
+        { "find": "\\bI know you('re| are) (an AI|a language model|a chatbot|not human|just a computer),?\\s*(but\\s+)?", "flags": "gi", "replace": "" },
+        { "find": "\\bsince you('re| are) (an AI|a language model|a chatbot),?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bbeing an AI,?\\s*", "flags": "gi", "replace": "" }
+      ]
+    },
+    {
+      "id": "remove-opinion-markers",
+      "name": "Remove Opinion Markers",
+      "description": "Removes \"I think\", \"I believe\"",
+      "explanation": "Everything you write is your input - marking it as opinion is redundant.",
+      "example": { "before": "I think you should...", "after": "You should..." },
+      "enabled": true,
+      "category": "redundancy",
+      "priority": 22,
+      "patterns": [
+        { "find": "\\bI (think|believe|feel|suppose|guess|assume|imagine|reckon) (that\\s+)?", "flags": "gi", "replace": "" },
+        { "find": "\\bin my (opinion|view|mind),?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bpersonally,?\\s*(I\\s+)?", "flags": "gi", "replace": "" },
+        { "find": "\\bfrom my perspective,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bto me,?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bas far as I('m| am) concerned,?\\s*", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -164,7 +248,25 @@
         { "find": "\\bfor the purpose of\\s+", "flags": "gi", "replace": "to " },
         { "find": "\\bin the event that\\s+", "flags": "gi", "replace": "if " },
         { "find": "\\bat this point in time\\b", "flags": "gi", "replace": "now" },
-        { "find": "\\bin the near future\\b", "flags": "gi", "replace": "soon" }
+        { "find": "\\bin the near future\\b", "flags": "gi", "replace": "soon" },
+        { "find": "\\bthe fact that\\s+", "flags": "gi", "replace": "that " },
+        { "find": "\\bwith regards? to\\s+", "flags": "gi", "replace": "regarding " },
+        { "find": "\\bin the context of\\s+", "flags": "gi", "replace": "for " },
+        { "find": "\\ba large number of\\s+", "flags": "gi", "replace": "many " },
+        { "find": "\\bthe vast majority of\\s+", "flags": "gi", "replace": "most " },
+        { "find": "\\bin spite of the fact that\\s+", "flags": "gi", "replace": "although " },
+        { "find": "\\buntil such time as\\s+", "flags": "gi", "replace": "until " },
+        { "find": "\\bhas the ability to\\s+", "flags": "gi", "replace": "can " },
+        { "find": "\\bhave the ability to\\s+", "flags": "gi", "replace": "can " },
+        { "find": "\\bis able to\\s+", "flags": "gi", "replace": "can " },
+        { "find": "\\bare able to\\s+", "flags": "gi", "replace": "can " },
+        { "find": "\\bis capable of\\s+", "flags": "gi", "replace": "can " },
+        { "find": "\\bprior to\\s+", "flags": "gi", "replace": "before " },
+        { "find": "\\bsubsequent to\\s+", "flags": "gi", "replace": "after " },
+        { "find": "\\bin addition to\\s+", "flags": "gi", "replace": "besides " },
+        { "find": "\\bin the process of\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bwith the exception of\\s+", "flags": "gi", "replace": "except " },
+        { "find": "\\bin close proximity to\\s+", "flags": "gi", "replace": "near " }
       ]
     },
     {
@@ -184,10 +286,18 @@
         { "find": "\\bgo ahead and\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bfeel free to\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bdon't hesitate to\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bany help you (might|may) (be able to\\s+)?provide[!.,]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bany help you (might|may|could|would) (be able to\\s+)?provide[!.,]?\\s*", "flags": "gi", "replace": "" },
         { "find": "\\bhelp me out with something\\??\\s*", "flags": "gi", "replace": "help with: " },
         { "find": "\\bpotentially\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bwriting some code for me\\??\\s*", "flags": "gi", "replace": "write code: " }
+        { "find": "\\bwriting some code for me\\??\\s*", "flags": "gi", "replace": "write code: " },
+        { "find": "\\btake into (account|consideration)\\s+", "flags": "gi", "replace": "consider " },
+        { "find": "\\bgive (some )?consideration to\\s+", "flags": "gi", "replace": "consider " },
+        { "find": "\\bcome up with\\s+", "flags": "gi", "replace": "create " },
+        { "find": "\\bfigure out\\s+", "flags": "gi", "replace": "determine " },
+        { "find": "\\bpoint out\\s+", "flags": "gi", "replace": "note " },
+        { "find": "\\bkeep in mind\\s+", "flags": "gi", "replace": "remember " },
+        { "find": "\\bput together\\s+", "flags": "gi", "replace": "create " },
+        { "find": "\\bbreak down\\s+", "flags": "gi", "replace": "explain " }
       ]
     },
     {
@@ -204,7 +314,15 @@
         { "find": "\\bextremely\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bquite\\s+", "flags": "gi", "replace": "" },
         { "find": "\\brather\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bsomewhat\\s+", "flags": "gi", "replace": "" }
+        { "find": "\\bsomewhat\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bhighly\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bincredibly\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bremarkably\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bparticularly\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bespecially\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bslightly\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bfairly\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bmoderately\\s+", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -217,12 +335,16 @@
       "category": "qualifiers",
       "priority": 40,
       "patterns": [
-        { "find": "\\bI think (that\\s+)?", "flags": "gi", "replace": "" },
-        { "find": "\\bI believe (that\\s+)?", "flags": "gi", "replace": "" },
         { "find": "\\bperhaps\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bmaybe\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bpossibly\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bprobably\\s+", "flags": "gi", "replace": "" }
+        { "find": "\\bprobably\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bI guess\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bI suppose\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bif at all possible\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bto some extent\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bin a way\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bmore or less\\s*", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -235,9 +357,11 @@
       "category": "qualifiers",
       "priority": 41,
       "patterns": [
-        { "find": "\\bit (seems|appears|looks) (like|as if|that)\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bit (seems|appears|looks) (like|as if|as though|that)\\s+", "flags": "gi", "replace": "" },
         { "find": "\\bseemingly\\s+", "flags": "gi", "replace": "" },
-        { "find": "\\bapparently\\s+", "flags": "gi", "replace": "" }
+        { "find": "\\bapparently\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bostensibly\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bpresumably\\s+", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -251,9 +375,36 @@
       "priority": 50,
       "patterns": [
         { "find": "\\bprovide (me with\\s+)?a detailed explanation of\\s+", "flags": "gi", "replace": "explain in detail: " },
-        { "find": "\\bgive (me\\s+)?a summary of\\s+", "flags": "gi", "replace": "summarize: " },
-        { "find": "\\bwrite a comprehensive guide (on|about)\\s+", "flags": "gi", "replace": "guide: " },
-        { "find": "\\b(create|make|generate) a list of\\s+", "flags": "gi", "replace": "list: " }
+        { "find": "\\bgive (me\\s+)?a (brief\\s+)?summary of\\s+", "flags": "gi", "replace": "summarize: " },
+        { "find": "\\bwrite a comprehensive guide (on|about|for)\\s+", "flags": "gi", "replace": "guide: " },
+        { "find": "\\b(create|make|generate|produce) a list of\\s+", "flags": "gi", "replace": "list: " },
+        { "find": "\\bprovide (me with\\s+)?an overview of\\s+", "flags": "gi", "replace": "overview: " },
+        { "find": "\\bgive (me\\s+)?a detailed description of\\s+", "flags": "gi", "replace": "describe: " },
+        { "find": "\\b(write|create) a step[- ]by[- ]step guide (on|for|to)\\s+", "flags": "gi", "replace": "steps: " },
+        { "find": "\\bexplain to me (how|what|why|when|where)\\s+", "flags": "gi", "replace": "explain $1 " },
+        { "find": "\\bcan you (tell|show|teach) me (about\\s+)?", "flags": "gi", "replace": "" }
+      ]
+    },
+    {
+      "id": "remove-unnecessary-context",
+      "name": "Remove Unnecessary Context",
+      "description": "Removes meta-commentary about the request itself",
+      "explanation": "Meta-commentary about asking wastes tokens.",
+      "example": { "before": "I have a question for you:", "after": "" },
+      "enabled": true,
+      "category": "structure",
+      "priority": 51,
+      "patterns": [
+        { "find": "\\bI have a (quick\\s+)?(question|query|request)( for you)?[:.!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bhere('s| is) (my|a|the) (question|query|request)[:.!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\blet me (ask|explain|describe)[:.!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bI('d| would) like to ask[:.!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bmy question is[:.!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bthe thing is[,:]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bhere's the (deal|thing|situation)[:.!]?\\s*", "flags": "gi", "replace": "" },
+        { "find": "\\bI('m| am) going to ask you to\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bI('m| am) wondering\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bI wanted to ask\\s+", "flags": "gi", "replace": "" }
       ]
     },
     {
@@ -320,7 +471,23 @@
       "category": "compression",
       "priority": 101,
       "patterns": [
-        { "find": "\\byou (should|must|need to)\\s+", "flags": "gi", "replace": "" }
+        { "find": "\\byou (should|must|need to|have to|ought to)\\s+", "flags": "gi", "replace": "" }
+      ]
+    },
+    {
+      "id": "compress-prepositions",
+      "name": "Compress Prepositions",
+      "description": "Removes redundant prepositions",
+      "explanation": "Many prepositional phrases can be shortened.",
+      "example": { "before": "in the area of machine learning", "after": "machine learning" },
+      "enabled": false,
+      "category": "compression",
+      "priority": 102,
+      "patterns": [
+        { "find": "\\bin (the )?(area|field|domain|realm) of\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bin terms of\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bwith respect to\\s+", "flags": "gi", "replace": "" },
+        { "find": "\\bin relation to\\s+", "flags": "gi", "replace": "" }
       ]
     }
   ]
