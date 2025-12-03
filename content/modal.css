@@ -53,6 +53,25 @@
   transform: translateY(-50%) scale(0.95);
 }
 
+.promptforge-trigger-fixed {
+  position: fixed !important;
+  transform: none !important;
+}
+
+.promptforge-trigger-fixed:hover {
+  transform: scale(1.05) !important;
+}
+
+.promptforge-trigger-fixed:active {
+  transform: scale(0.95) !important;
+}
+
+.promptforge-dragging {
+  cursor: grabbing !important;
+  user-select: none;
+  box-shadow: var(--pf-shadow-glow), 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
 .promptforge-trigger svg {
   width: 18px;
   height: 18px;

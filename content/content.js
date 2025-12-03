@@ -12,6 +12,8 @@ class PromptForge {
     this.currentInput = null;
     this.isEnabled = true;
     this.initialized = false;
+    this.buttonOpacity = 1;
+    this.buttonPosition = null; // { x, y } - saved position
   }
 
   async init() {
@@ -61,10 +63,14 @@ class PromptForge {
 
   async loadSettings() {
     try {
-      const settings = await chrome.storage.sync.get(['enabled']);
+      const settings = await chrome.storage.sync.get(['enabled', 'buttonOpacity', 'buttonPosition']);
       this.isEnabled = settings.enabled !== false;
+      this.buttonOpacity = settings.buttonOpacity !== undefined ? settings.buttonOpacity : 1;
+      this.buttonPosition = settings.buttonPosition || null;
     } catch (e) {
       this.isEnabled = true;
+      this.buttonOpacity = 1;
+      this.buttonPosition = null;
     }
   }
 
@@ -105,20 +111,115 @@ class PromptForge {
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
       </svg>
     `;
-    button.title = 'PromptForge: Optimize (Ctrl+Shift+O)';
-    
-    button.addEventListener('click', (e) => {
+    button.title = 'PromptForge: Optimize (Ctrl+Shift+O) - Drag to move';
+
+    // Apply saved opacity
+    button.style.opacity = this.buttonOpacity;
+
+    // Apply saved position if exists
+    if (this.buttonPosition) {
+      button.style.position = 'fixed';
+      button.style.right = 'auto';
+      button.style.top = 'auto';
+      button.style.left = `${this.buttonPosition.x}px`;
+      button.style.top = `${this.buttonPosition.y}px`;
+      button.style.transform = 'none';
+      button.classList.add('promptforge-trigger-fixed');
+    }
+
+    // Dragging state
+    let isDragging = false;
+    let hasMoved = false;
+    let startX, startY, initialX, initialY;
+
+    const onMouseDown = (e) => {
+      if (e.button !== 0) return; // Only left click
+      isDragging = true;
+      hasMoved = false;
+      startX = e.clientX;
+      startY = e.clientY;
+
+      const rect = button.getBoundingClientRect();
+      initialX = rect.left;
+      initialY = rect.top;
+
+      button.style.cursor = 'grabbing';
+      button.classList.add('promptforge-dragging');
+      e.preventDefault();
+    };
+
+    const onMouseMove = (e) => {
+      if (!isDragging) return;
+
+      const deltaX = e.clientX - startX;
+      const deltaY = e.clientY - startY;
+
+      // Only consider it a drag if moved more than 5px
+      if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+        hasMoved = true;
+
+        // Switch to fixed positioning for dragging
+        button.style.position = 'fixed';
+        button.style.right = 'auto';
+        button.style.transform = 'none';
+        button.classList.add('promptforge-trigger-fixed');
+
+        const newX = initialX + deltaX;
+        const newY = initialY + deltaY;
+
+        // Clamp to viewport
+        const clampedX = Math.max(0, Math.min(window.innerWidth - 40, newX));
+        const clampedY = Math.max(0, Math.min(window.innerHeight - 40, newY));
+
+        button.style.left = `${clampedX}px`;
+        button.style.top = `${clampedY}px`;
+      }
+    };
+
+    const onMouseUp = async (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      button.style.cursor = '';
+      button.classList.remove('promptforge-dragging');
+
+      if (hasMoved) {
+        // Save the new position
+        const rect = button.getBoundingClientRect();
+        this.buttonPosition = { x: rect.left, y: rect.top };
+        try {
+          await chrome.storage.sync.set({ buttonPosition: this.buttonPosition });
+        } catch (e) {
+          console.log('Could not save button position:', e);
+        }
+      }
+    };
+
+    const onClick = (e) => {
+      // Only trigger if not dragged
+      if (hasMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+        hasMoved = false;
+        return;
+      }
       e.preventDefault();
       e.stopPropagation();
       this.showOptimizationModal(input);
-    });
+    };
+
+    button.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+    button.addEventListener('click', onClick);
 
     container.appendChild(button);
-    
-    // Make container relative if needed
-    const containerStyle = getComputedStyle(container);
-    if (containerStyle.position === 'static') {
-      container.style.position = 'relative';
+
+    // Make container relative if needed (only if not using fixed position)
+    if (!this.buttonPosition) {
+      const containerStyle = getComputedStyle(container);
+      if (containerStyle.position === 'static') {
+        container.style.position = 'relative';
+      }
     }
   }
 
@@ -296,12 +397,12 @@ class PromptForge {
   }
 
   async setPreset(presetId) {
-    // RulesEngine uses setCompressionLevel, not setCompressionPreset
+    // RulesEngine uses setCompressionLevel
     if (this.rulesEngine.setCompressionLevel) {
-      this.rulesEngine.setCompressionLevel(presetId);
+      await this.rulesEngine.setCompressionLevel(presetId);
     }
     this.updatePresetButtons();
-    
+
     // Re-analyze if modal is open
     if (this.modal.classList.contains('pf-visible') && this.currentAnalysis) {
       const text = this.currentAnalysis.original;
@@ -310,7 +411,7 @@ class PromptForge {
   }
 
   updatePresetButtons() {
-    const preset = this.rulesEngine.compressionPreset || 'medium';
+    const preset = this.rulesEngine.compressionLevel || 'medium';
     this.modal.querySelectorAll('.pf-preset-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.preset === preset);
     });

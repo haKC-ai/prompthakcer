@@ -2,16 +2,31 @@
   "manifest_version": 3,
   "name": "PromptForge - AI Prompt Optimizer",
   "version": "1.0.0",
-  "description": "Optimize your AI prompts for maximum efficiency. Reduce tokens, improve clarity, and learn better prompting techniques. Works with ChatGPT, Claude, Gemini, Grok, and any AI chat.",
+  "description": "Optimize AI prompts for efficiency. Reduce tokens, improve clarity, and learn better prompting. Works with any AI chat.",
   "permissions": [
     "storage",
     "activeTab",
     "contextMenus",
     "clipboardWrite",
-    "clipboardRead"
+    "clipboardRead",
+    "scripting"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "*://chat.openai.com/*",
+    "*://chatgpt.com/*",
+    "*://claude.ai/*",
+    "*://gemini.google.com/*",
+    "*://bard.google.com/*",
+    "*://grok.x.ai/*",
+    "*://x.com/*",
+    "*://copilot.microsoft.com/*",
+    "*://www.bing.com/*",
+    "*://perplexity.ai/*",
+    "*://www.perplexity.ai/*",
+    "*://poe.com/*",
+    "*://huggingface.co/*",
+    "*://chat.deepseek.com/*",
+    "*://chat.mistral.ai/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -26,7 +41,23 @@
   "options_page": "options/options.html",
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "*://chat.openai.com/*",
+        "*://chatgpt.com/*",
+        "*://claude.ai/*",
+        "*://gemini.google.com/*",
+        "*://bard.google.com/*",
+        "*://grok.x.ai/*",
+        "*://x.com/*",
+        "*://copilot.microsoft.com/*",
+        "*://www.bing.com/*",
+        "*://perplexity.ai/*",
+        "*://www.perplexity.ai/*",
+        "*://poe.com/*",
+        "*://huggingface.co/*",
+        "*://chat.deepseek.com/*",
+        "*://chat.mistral.ai/*"
+      ],
       "js": [
         "lib/rules-engine.js",
         "lib/site-detector.js",
@@ -50,8 +81,24 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["content/modal.css", "icons/*"],
-      "matches": ["<all_urls>"]
+      "resources": ["content/modal.css", "icons/*", "lib/*", "content/content.js"],
+      "matches": [
+        "*://chat.openai.com/*",
+        "*://chatgpt.com/*",
+        "*://claude.ai/*",
+        "*://gemini.google.com/*",
+        "*://bard.google.com/*",
+        "*://grok.x.ai/*",
+        "*://x.com/*",
+        "*://copilot.microsoft.com/*",
+        "*://www.bing.com/*",
+        "*://perplexity.ai/*",
+        "*://www.perplexity.ai/*",
+        "*://poe.com/*",
+        "*://huggingface.co/*",
+        "*://chat.deepseek.com/*",
+        "*://chat.mistral.ai/*"
+      ]
     }
   ],
   "commands": {

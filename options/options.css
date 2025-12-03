@@ -237,6 +237,59 @@ body::before {
   color: var(--text-dim);
 }
 
+/* ========== OPACITY CONTROL ========== */
+.opacity-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.opacity-control input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 120px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  outline: none;
+  padding: 0;
+  border: none;
+}
+
+.opacity-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--gradient);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  transition: transform 0.2s;
+}
+
+.opacity-control input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.opacity-control input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--gradient);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.opacity-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cyan);
+  min-width: 45px;
+  text-align: right;
+}
+
 /* ========== TOGGLE ========== */
 .toggle {
   position: relative;

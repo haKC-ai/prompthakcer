@@ -56,13 +56,19 @@ async function loadSettings() {
     'enabled',
     'compressionPreset',
     'showNotifications',
-    'autoSaveHistory'
+    'autoSaveHistory',
+    'buttonOpacity'
   ]);
-  
+
   document.getElementById('enabled').checked = settings.enabled !== false;
   document.getElementById('compressionPreset').value = settings.compressionPreset || 'medium';
   document.getElementById('showNotifications').checked = settings.showNotifications !== false;
   document.getElementById('autoSaveHistory').checked = settings.autoSaveHistory !== false;
+
+  // Button opacity
+  const opacity = settings.buttonOpacity !== undefined ? settings.buttonOpacity : 1;
+  document.getElementById('buttonOpacity').value = opacity;
+  document.getElementById('opacityValue').textContent = `${Math.round(opacity * 100)}%`;
 }
 
 async function saveSettings() {
@@ -72,8 +78,19 @@ async function saveSettings() {
     showNotifications: document.getElementById('showNotifications').checked,
     autoSaveHistory: document.getElementById('autoSaveHistory').checked
   });
-  
+
   showToast('Settings saved', 'success');
+}
+
+async function saveButtonOpacity() {
+  const opacity = parseFloat(document.getElementById('buttonOpacity').value);
+  document.getElementById('opacityValue').textContent = `${Math.round(opacity * 100)}%`;
+  await chrome.storage.sync.set({ buttonOpacity: opacity });
+}
+
+async function resetButtonPosition() {
+  await chrome.storage.sync.remove('buttonPosition');
+  showToast('Button position reset. Reload the AI chat page to see changes.', 'success');
 }
 
 // ============================================================================
@@ -117,11 +134,11 @@ async function renderSites() {
       </div>
       <div class="site-actions">
         <label class="toggle">
-          <input type="checkbox" ${site.enabled ? 'checked' : ''} onchange="toggleSite('${site.id}', this.checked)">
+          <input type="checkbox" ${site.enabled ? 'checked' : ''} data-site-toggle="${site.id}">
           <span class="toggle-slider"></span>
         </label>
         ${site.isCustom ? `
-          <button class="delete-btn" onclick="deleteSite('${site.id}')" title="Delete">
+          <button class="delete-btn" data-site-delete="${site.id}" title="Delete">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="3 6 5 6 21 6"/>
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
@@ -204,7 +221,7 @@ function renderRules() {
   container.innerHTML = rules.map(rule => `
     <div class="rule-item ${rule.enabled ? '' : 'disabled'}" data-rule-id="${rule.id}">
       <label class="toggle">
-        <input type="checkbox" ${rule.enabled ? 'checked' : ''} onchange="toggleRule('${rule.id}', this.checked)">
+        <input type="checkbox" ${rule.enabled ? 'checked' : ''} data-rule-toggle="${rule.id}">
         <span class="toggle-slider"></span>
       </label>
       <div class="rule-info">
@@ -214,7 +231,7 @@ function renderRules() {
       <span class="rule-category">${rule.category}</span>
       ${rule.isCustom ? `
         <div class="rule-actions">
-          <button class="delete-btn" onclick="deleteRule('${rule.id}')" title="Delete">
+          <button class="delete-btn" data-rule-delete="${rule.id}" title="Delete">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="3 6 5 6 21 6"/>
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
@@ -417,16 +434,48 @@ function setupEventListeners() {
   document.getElementById('compressionPreset').addEventListener('change', saveSettings);
   document.getElementById('showNotifications').addEventListener('change', saveSettings);
   document.getElementById('autoSaveHistory').addEventListener('change', saveSettings);
-  
+
+  // Button appearance
+  document.getElementById('buttonOpacity').addEventListener('input', saveButtonOpacity);
+  document.getElementById('resetButtonPosition').addEventListener('click', resetButtonPosition);
+
   // Sites
   document.getElementById('addSiteBtn').addEventListener('click', addSite);
-  
+
+  // Sites list - event delegation for dynamic elements
+  document.getElementById('sitesList').addEventListener('change', (e) => {
+    const siteId = e.target.dataset.siteToggle;
+    if (siteId) {
+      toggleSite(siteId, e.target.checked);
+    }
+  });
+  document.getElementById('sitesList').addEventListener('click', (e) => {
+    const deleteBtn = e.target.closest('[data-site-delete]');
+    if (deleteBtn) {
+      deleteSite(deleteBtn.dataset.siteDelete);
+    }
+  });
+
   // Rules
   document.getElementById('categoryFilter').addEventListener('change', renderRules);
   document.getElementById('resetRulesBtn').addEventListener('click', resetRules);
   document.getElementById('addRuleBtn').addEventListener('click', addRule);
   document.getElementById('testRulesBtn').addEventListener('click', testRules);
-  
+
+  // Rules list - event delegation for dynamic elements
+  document.getElementById('rulesList').addEventListener('change', (e) => {
+    const ruleId = e.target.dataset.ruleToggle;
+    if (ruleId) {
+      toggleRule(ruleId, e.target.checked);
+    }
+  });
+  document.getElementById('rulesList').addEventListener('click', (e) => {
+    const deleteBtn = e.target.closest('[data-rule-delete]');
+    if (deleteBtn) {
+      deleteRule(deleteBtn.dataset.ruleDelete);
+    }
+  });
+
   // Data
   document.getElementById('exportHistoryBtn').addEventListener('click', exportHistory);
   document.getElementById('importHistoryBtn').addEventListener('click', importHistory);
@@ -458,9 +507,3 @@ function escapeHtml(text) {
   div.textContent = text;
   return div.innerHTML;
 }
-
-// Expose functions globally
-window.toggleSite = toggleSite;
-window.deleteSite = deleteSite;
-window.toggleRule = toggleRule;
-window.deleteRule = deleteRule;
