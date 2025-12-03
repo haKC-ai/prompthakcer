@@ -1,9 +1,9 @@
 /**
- * PromptForge Content Script v2.0
+ * PrompthaKCer Content Script v2.0
  * Detects AI chatbot inputs and provides optimization
  */
 
-class PromptForge {
+class PrompthaKCer {
   constructor() {
     this.rulesEngine = null;
     this.siteDetector = null;
@@ -30,7 +30,7 @@ class PromptForge {
     
     // Check if on supported site
     if (!this.siteDetector.isOnSupportedSite()) {
-      console.log('PromptForge: Not on a supported AI chat site');
+      console.log('PrompthaKCer: Not on a supported AI chat site');
       return;
     }
     
@@ -38,7 +38,7 @@ class PromptForge {
     await this.loadSettings();
     
     if (!this.isEnabled) {
-      console.log('PromptForge: Disabled');
+      console.log('PrompthaKCer: Disabled');
       return;
     }
     
@@ -58,7 +58,7 @@ class PromptForge {
     this.setupMessageListener();
     
     this.initialized = true;
-    console.log(` PromptForge active on ${this.siteDetector.getCurrentSite().name}`);
+    console.log(` PrompthaKCer active on ${this.siteDetector.getCurrentSite().name}`);
   }
 
   async loadSettings() {
@@ -111,7 +111,7 @@ class PromptForge {
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
       </svg>
     `;
-    button.title = 'PromptForge: Optimize (Ctrl+Shift+O) - Drag to move';
+    button.title = 'PrompthaKCer: haKC (Ctrl+Shift+O) - Drag to move';
 
     // Apply saved opacity
     button.style.opacity = this.buttonOpacity;
@@ -283,7 +283,7 @@ class PromptForge {
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
-            <span>PromptForge</span>
+            <span>PrompthaKCer</span>
           </div>
           
           <div class="pf-preset-selector">
@@ -598,7 +598,7 @@ class PromptForge {
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => new PromptForge().init());
+  document.addEventListener('DOMContentLoaded', () => new PrompthaKCer().init());
 } else {
-  new PromptForge().init();
+  new PrompthaKCer().init();
 }
