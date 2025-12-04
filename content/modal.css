@@ -1,5 +1,5 @@
 /**
- * PromptForge Modal Styles v2.0
+ * PrompthaKCer Modal Styles v2.0
  * Injected into AI chat pages
  */
 
@@ -21,7 +21,7 @@
 }
 
 /* Trigger Button */
-.promptforge-trigger {
+.prompthakcer-trigger {
   position: absolute;
   right: 50px;
   top: 50%;
@@ -42,44 +42,44 @@
   backdrop-filter: blur(8px);
 }
 
-.promptforge-trigger:hover {
+.prompthakcer-trigger:hover {
   background: linear-gradient(135deg, rgba(0, 255, 255, 0.25) 0%, rgba(255, 0, 255, 0.25) 100%);
   border-color: var(--pf-cyan);
   box-shadow: var(--pf-shadow-glow);
   transform: translateY(-50%) scale(1.05);
 }
 
-.promptforge-trigger:active {
+.prompthakcer-trigger:active {
   transform: translateY(-50%) scale(0.95);
 }
 
-.promptforge-trigger-fixed {
+.prompthakcer-trigger-fixed {
   position: fixed !important;
   transform: none !important;
 }
 
-.promptforge-trigger-fixed:hover {
+.prompthakcer-trigger-fixed:hover {
   transform: scale(1.05) !important;
 }
 
-.promptforge-trigger-fixed:active {
+.prompthakcer-trigger-fixed:active {
   transform: scale(0.95) !important;
 }
 
-.promptforge-dragging {
+.prompthakcer-dragging {
   cursor: grabbing !important;
   user-select: none;
   box-shadow: var(--pf-shadow-glow), 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 
-.promptforge-trigger svg {
+.prompthakcer-trigger svg {
   width: 18px;
   height: 18px;
   filter: drop-shadow(0 0 4px var(--pf-cyan));
 }
 
 /* Modal Container */
-#promptforge-modal {
+#prompthakcer-modal {
   position: fixed;
   inset: 0;
   z-index: 999999;
@@ -87,11 +87,11 @@
   font-family: var(--pf-font);
 }
 
-#promptforge-modal * {
+#prompthakcer-modal * {
   box-sizing: border-box;
 }
 
-#promptforge-modal.pf-visible {
+#prompthakcer-modal.pf-visible {
   display: block;
 }
 
