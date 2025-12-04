@@ -106,11 +106,9 @@ class PrompthaKCer {
 
     const button = document.createElement('button');
     button.className = 'prompthakcer-trigger';
-    button.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-      </svg>
-    `;
+    button.innerHTML = `<pre class="pf-trigger-ascii">░█░█░█▀█░█░█░█▀▀
+░█▀█░█▀█░█▀▄░█░░
+░▀░▀░▀░▀░▀░▀░▀▀▀</pre>`;
     button.title = 'PrompthaKCer: haKC (Ctrl+Shift+O) - Drag to move';
 
     // Apply saved opacity
@@ -280,9 +278,7 @@ class PrompthaKCer {
       <div class="pf-modal-container">
         <div class="pf-modal-header">
           <div class="pf-logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
+            <span class="pf-logo-icon">⬡</span>
             <span>PrompthaKCer</span>
           </div>
           

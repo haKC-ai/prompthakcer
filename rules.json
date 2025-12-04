@@ -1,6 +1,55 @@
 {
   "version": "1.2.0",
   "updated": "2025-12-04",
+  "presets": {
+    "none": {
+      "name": "None",
+      "description": "Formatting only - no content changes",
+      "icon": "[1]",
+      "enabledCategories": ["formatting"]
+    },
+    "light": {
+      "name": "Light",
+      "description": "Light touch - removes obvious fluff",
+      "icon": "[2]",
+      "enabledCategories": ["formatting", "fluff", "security"]
+    },
+    "medium": {
+      "name": "Medium",
+      "description": "Recommended - removes fluff and redundancy",
+      "icon": "[3]",
+      "enabledCategories": ["formatting", "fluff", "redundancy", "security"]
+    },
+    "heavy": {
+      "name": "Heavy",
+      "description": "Aggressive - strips most non-essential content",
+      "icon": "[4]",
+      "enabledCategories": ["formatting", "fluff", "redundancy", "verbosity", "qualifiers", "structure", "security"]
+    },
+    "maximum": {
+      "name": "Maximum",
+      "description": "Extreme - deep compression (may alter meaning)",
+      "icon": "[5]",
+      "enabledCategories": ["formatting", "fluff", "redundancy", "verbosity", "qualifiers", "structure", "compression", "security"]
+    },
+    "custom": {
+      "name": "Custom",
+      "description": "Your own rule configuration",
+      "icon": "[C]",
+      "enabledCategories": null
+    }
+  },
+  "categories": {
+    "fluff": { "name": "Politeness & Fluff", "icon": "FL", "description": "Removes unnecessary pleasantries" },
+    "redundancy": { "name": "Redundancy", "icon": "RD", "description": "Eliminates repetitive phrases" },
+    "verbosity": { "name": "Verbosity", "icon": "VB", "description": "Condenses wordy phrases" },
+    "qualifiers": { "name": "Qualifiers", "icon": "QL", "description": "Removes hedging language" },
+    "structure": { "name": "Structure", "icon": "ST", "description": "Optimizes prompt structure" },
+    "formatting": { "name": "Formatting", "icon": "FT", "description": "Cleans up whitespace/punctuation" },
+    "compression": { "name": "Deep Compression", "icon": "DC", "description": "Aggressive token reduction" },
+    "security": { "name": "Security (DLP)", "icon": "SEC", "description": "Redacts sensitive data" },
+    "custom": { "name": "Custom Rules", "icon": "CU", "description": "Your personal rules" }
+  },
   "rules": [
     {
       "id": "redact-credit-cards",
@@ -748,7 +797,7 @@
       "enabled": true,
       "category": "formatting",
       "priority": 95,
-      "transformCode": "return text.charAt(0).toUpperCase() + text.slice(1);"
+      "transform": "capitalize-first"
     },
     {
       "id": "compress-articles",

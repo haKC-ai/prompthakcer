@@ -11,14 +11,89 @@ let rulesEngine;
 document.addEventListener('DOMContentLoaded', async () => {
   rulesEngine = new RulesEngine();
   await rulesEngine.init();
-  
+
   setupNavigation();
   await loadSettings();
   renderSites();
   renderRules();
   await loadDataStats();
+  await loadRulesInfo();
   setupEventListeners();
+
+  // Listen for navigation messages from popup
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === 'navigateToSection' && message.section) {
+      navigateToSection(message.section);
+    }
+  });
+
+  // Check URL hash for direct section navigation
+  if (window.location.hash) {
+    const section = window.location.hash.substring(1);
+    navigateToSection(section);
+  }
 });
+
+function navigateToSection(sectionId) {
+  const btn = document.querySelector(`.nav-btn[data-section="${sectionId}"]`);
+  if (btn) {
+    btn.click();
+  }
+}
+
+// ============================================================================
+// RULES INFO & UPDATE
+// ============================================================================
+
+async function loadRulesInfo() {
+  const info = await rulesEngine.getLastUpdateInfo();
+
+  if (info) {
+    document.getElementById('rulesVersion').textContent = `v${info.version}`;
+    document.getElementById('rulesCount').textContent = info.rulesCount;
+
+    if (info.updated) {
+      document.getElementById('rulesUpdated').textContent = info.updated;
+    } else if (info.cachedAt) {
+      const date = new Date(info.cachedAt);
+      document.getElementById('rulesUpdated').textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+    }
+  } else {
+    document.getElementById('rulesVersion').textContent = 'Not loaded';
+    document.getElementById('rulesCount').textContent = rulesEngine.getRules().length;
+    document.getElementById('rulesUpdated').textContent = 'Never';
+  }
+}
+
+async function pullLatestRules() {
+  const btn = document.getElementById('pullLatestRulesBtn');
+  const originalText = btn.innerHTML;
+
+  btn.disabled = true;
+  btn.innerHTML = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin">
+      <path d="M21 12a9 9 0 1 1-9-9"/>
+    </svg>
+    Updating...
+  `;
+
+  try {
+    const result = await rulesEngine.refreshRemoteRules();
+
+    if (result.success) {
+      await loadRulesInfo();
+      renderRules();
+      showToast(`Updated to v${result.version} (${result.rulesCount} rules)`, 'success');
+    } else {
+      showToast(`Update failed: ${result.error}`, 'error');
+    }
+  } catch (e) {
+    showToast(`Update failed: ${e.message}`, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
+}
 
 // ============================================================================
 // NAVIGATION
@@ -248,6 +323,16 @@ function toggleRule(ruleId, enabled) {
   renderRules();
 }
 
+async function enableAllRules() {
+  const rules = rulesEngine.getRules();
+  for (const rule of rules) {
+    rule.enabled = true;
+  }
+  await rulesEngine.saveRules();
+  renderRules();
+  showToast(`Enabled all ${rules.length} rules`, 'success');
+}
+
 async function addRule() {
   const name = document.getElementById('customRuleName').value.trim();
   const description = document.getElementById('customRuleDesc').value.trim();
@@ -459,6 +544,8 @@ function setupEventListeners() {
   // Rules
   document.getElementById('categoryFilter').addEventListener('change', renderRules);
   document.getElementById('resetRulesBtn').addEventListener('click', resetRules);
+  document.getElementById('pullLatestRulesBtn').addEventListener('click', pullLatestRules);
+  document.getElementById('enableAllRulesBtn').addEventListener('click', enableAllRules);
   document.getElementById('addRuleBtn').addEventListener('click', addRule);
   document.getElementById('testRulesBtn').addEventListener('click', testRules);
 

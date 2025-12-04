@@ -148,11 +148,67 @@ function showSiteStatus(site) {
 // ============================================================================
 
 async function loadSettings() {
-  const stored = await chrome.storage.sync.get(['compressionPreset']);
+  const stored = await chrome.storage.sync.get(['compressionPreset', 'enableDeepCompression']);
   const preset = stored.compressionPreset || 'medium';
-  
-  // Update preset selector
+
+  // Update preset selector (for slider)
   updatePresetSelector(preset);
+
+  // Update compression level indicator
+  updateCompressionIndicator();
+
+  // Update deep compression checkbox
+  const deepCompressionCheckbox = document.getElementById('enableDeepCompression');
+  if (deepCompressionCheckbox) {
+    deepCompressionCheckbox.checked = stored.enableDeepCompression || false;
+  }
+}
+
+// Detect compression level based on enabled rules
+function updateCompressionIndicator() {
+  const display = document.getElementById('compressionLevelDisplay');
+  if (!display || !rulesEngine) return;
+
+  const rules = rulesEngine.getRules();
+  const presets = rulesEngine.getCompressionPresets();
+  const currentLevel = rulesEngine.getCurrentCompressionLevel();
+
+  // If using a preset, show that
+  if (currentLevel && currentLevel !== 'custom' && presets[currentLevel]) {
+    display.textContent = presets[currentLevel].name;
+    return;
+  }
+
+  // Otherwise, try to detect based on enabled categories
+  const enabledCategories = new Set();
+  for (const rule of rules) {
+    if (rule.enabled && !rule.isCustom) {
+      enabledCategories.add(rule.category);
+    }
+  }
+
+  // Match against presets (most restrictive first)
+  const presetOrder = ['none', 'light', 'medium', 'heavy', 'maximum'];
+  for (const presetId of presetOrder.reverse()) {
+    const preset = presets[presetId];
+    if (!preset || !preset.enabledCategories) continue;
+
+    const presetCats = new Set(preset.enabledCategories);
+    // Check if enabled categories roughly match this preset
+    let matches = true;
+    for (const cat of preset.enabledCategories) {
+      if (!enabledCategories.has(cat)) {
+        matches = false;
+        break;
+      }
+    }
+    if (matches && enabledCategories.size <= presetCats.size + 1) {
+      display.textContent = preset.name;
+      return;
+    }
+  }
+
+  display.textContent = 'Custom';
 }
 
 // ============================================================================
@@ -162,74 +218,108 @@ async function loadSettings() {
 function setupTabs() {
   const tabs = document.querySelectorAll('.tab');
   const contents = document.querySelectorAll('.tab-content');
-  
+  const promptTesterPanel = document.getElementById('promptTesterPanel');
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const targetId = tab.dataset.tab;
-      
+
+      // Toggle prompt tester panel when clicking Prompt Tester tab
+      if (targetId === 'optimize' && tab.classList.contains('active')) {
+        // Already active - toggle the panel
+        if (promptTesterPanel) {
+          const isVisible = promptTesterPanel.style.display !== 'none';
+          promptTesterPanel.style.display = isVisible ? 'none' : 'block';
+        }
+        return;
+      }
+
       // Update active tab
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      
+
       // Update active content
       contents.forEach(c => c.classList.remove('active'));
       document.getElementById(`${targetId}-tab`).classList.add('active');
-      
+
       // Refresh content if needed
       if (targetId === 'history') {
         renderHistory();
       } else if (targetId === 'learn') {
         renderInsights();
+      } else if (targetId === 'optimize') {
+        // Show prompt tester panel when switching to optimize tab
+        if (promptTesterPanel) {
+          promptTesterPanel.style.display = 'block';
+        }
       }
     });
   });
 }
 
 // ============================================================================
-// PRESET SELECTOR
+// PRESET SELECTOR (Slider-based)
 // ============================================================================
 
-function setupPresetSelector() {
-  // HTML uses 'compression-btn' class not 'preset-btn'
-  const buttons = document.querySelectorAll('.compression-btn, .preset-btn');
+// Map slider values to preset names
+const SLIDER_PRESETS = {
+  1: 'light',
+  2: 'medium',
+  3: 'heavy',
+  4: 'maximum'
+};
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // HTML uses 'data-level' not 'data-preset'
-      const preset = btn.dataset.level || btn.dataset.preset;
-      updatePresetSelector(preset);
-      // RulesEngine uses setCompressionLevel, not setCompressionPreset
+const PRESET_TO_SLIDER = {
+  'none': 1,
+  'light': 1,
+  'medium': 2,
+  'heavy': 3,
+  'maximum': 4,
+  'minimal': 1,
+  'balanced': 2,
+  'aggressive': 3
+};
+
+function setupPresetSelector() {
+  const slider = document.getElementById('compressionSlider');
+
+  if (slider) {
+    slider.addEventListener('input', () => {
+      const preset = SLIDER_PRESETS[slider.value] || 'medium';
       if (rulesEngine.setCompressionLevel) {
         rulesEngine.setCompressionLevel(preset);
       }
+      updateCompressionIndicator();
+    });
+  }
+
+  // Also support old button-based selector if present
+  const buttons = document.querySelectorAll('.compression-btn, .preset-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const preset = btn.dataset.level || btn.dataset.preset;
+      updatePresetSelector(preset);
+      if (rulesEngine.setCompressionLevel) {
+        rulesEngine.setCompressionLevel(preset);
+      }
+      updateCompressionIndicator();
     });
   });
 }
 
 function updatePresetSelector(presetId) {
-  // HTML uses 'compression-btn' class not 'preset-btn'
-  const buttons = document.querySelectorAll('.compression-btn, .preset-btn');
-  const nameEl = document.getElementById('presetName');
+  // Update slider if present
+  const slider = document.getElementById('compressionSlider');
+  if (slider) {
+    slider.value = PRESET_TO_SLIDER[presetId] || 2;
+  }
 
+  // Update buttons if present
+  const buttons = document.querySelectorAll('.compression-btn, .preset-btn');
   buttons.forEach(btn => {
-    // HTML uses 'data-level' not 'data-preset'
     const btnPreset = btn.dataset.level || btn.dataset.preset;
     btn.classList.toggle('active', btnPreset === presetId);
   });
-
-  const presets = {
-    none: 'None',
-    light: 'Light',
-    medium: 'Medium',
-    heavy: 'Heavy',
-    maximum: 'Maximum',
-    // HTML uses these level names
-    minimal: 'Minimal',
-    balanced: 'Balanced',
-    aggressive: 'Aggressive'
-  };
-
-  if (nameEl) nameEl.textContent = presets[presetId] || 'Medium';
 }
 
 // ============================================================================
@@ -248,7 +338,21 @@ function setupOptimizer() {
     if (charCount) charCount.textContent = `${text.length} chars`;
     if (tokenCount) tokenCount.textContent = `~${rulesEngine.estimateTokens(text)} tokens`;
   });
-  
+
+  // Deep compression checkbox
+  const deepCompressionCheckbox = document.getElementById('enableDeepCompression');
+  if (deepCompressionCheckbox) {
+    // Load saved state
+    chrome.storage.sync.get(['enableDeepCompression'], (result) => {
+      deepCompressionCheckbox.checked = result.enableDeepCompression || false;
+    });
+
+    // Save on change
+    deepCompressionCheckbox.addEventListener('change', () => {
+      chrome.storage.sync.set({ enableDeepCompression: deepCompressionCheckbox.checked });
+    });
+  }
+
   // Optimize button
   document.getElementById('optimizeBtn').addEventListener('click', optimizePrompt);
 
@@ -259,24 +363,63 @@ function setupOptimizer() {
   // Apply button (may not exist in HTML)
   const applyBtn = document.getElementById('applyBtn');
   if (applyBtn) applyBtn.addEventListener('click', applyToPage);
+
+  // Paste button
+  const pasteBtn = document.getElementById('pasteBtn');
+  if (pasteBtn) {
+    pasteBtn.addEventListener('click', async () => {
+      try {
+        const text = await navigator.clipboard.readText();
+        input.value = text;
+        input.dispatchEvent(new Event('input'));
+        showToast('Pasted from clipboard', 'success');
+      } catch (e) {
+        showToast('Could not paste from clipboard', 'error');
+      }
+    });
+  }
+
+  // Clear button
+  const clearBtn = document.getElementById('clearBtn');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      input.dispatchEvent(new Event('input'));
+      document.getElementById('resultsSection').style.display = 'none';
+    });
+  }
+
+  // View Changes button
+  const viewChangesBtn = document.getElementById('viewChangesBtn');
+  if (viewChangesBtn) {
+    viewChangesBtn.addEventListener('click', showChangesModal);
+  }
 }
+
+// Store last result for diff view
+let lastOptimizationResult = null;
 
 async function optimizePrompt() {
   const input = document.getElementById('promptInput');
   const text = input.value.trim();
-  
+
   if (!text) {
     showToast('Please enter a prompt to optimize', 'error');
     return;
   }
-  
+
   if (text.length < 10) {
     showToast('Prompt is too short to optimize', 'error');
     return;
   }
-  
-  // Analyze the prompt
-  const result = rulesEngine.analyze(text, { showExplanations: true });
+
+  // Check if deep compression is enabled
+  const deepCompressionCheckbox = document.getElementById('enableDeepCompression');
+  const enableCompression = deepCompressionCheckbox ? deepCompressionCheckbox.checked : false;
+
+  // Analyze the prompt with compression option
+  const result = rulesEngine.analyze(text, { showExplanations: true, enableCompression });
+  lastOptimizationResult = result;
   
   if (!result.hasChanges) {
     showToast('Prompt is already optimized! [OK]', 'success');
@@ -370,9 +513,9 @@ async function applyToPage() {
     showToast('Cannot access current tab', 'error');
     return;
   }
-  
+
   const optimized = document.getElementById('optimizedOutput').textContent;
-  
+
   try {
     await chrome.tabs.sendMessage(currentTab.id, {
       action: 'applyOptimized',
@@ -383,6 +526,48 @@ async function applyToPage() {
     // Content script might not be loaded
     showToast('Could not apply - try refreshing the page', 'error');
   }
+}
+
+function showChangesModal() {
+  if (!lastOptimizationResult) return;
+
+  const modal = document.getElementById('changesModal');
+  const diffContainer = document.getElementById('diffContainer');
+
+  if (!modal || !diffContainer) return;
+
+  // Simple diff view - show original with strikethrough and new
+  const original = lastOptimizationResult.original;
+  const optimized = lastOptimizationResult.optimized;
+
+  diffContainer.innerHTML = `
+    <div class="diff-section">
+      <h4>Original (${original.length} chars)</h4>
+      <div class="diff-original">${escapeHtml(original)}</div>
+    </div>
+    <div class="diff-section">
+      <h4>Optimized (${optimized.length} chars)</h4>
+      <div class="diff-optimized">${escapeHtml(optimized)}</div>
+    </div>
+    <div class="diff-stats">
+      <span>Saved: ${lastOptimizationResult.stats.charsSaved} chars</span>
+      <span>~${lastOptimizationResult.stats.tokensSaved} tokens</span>
+      <span>${lastOptimizationResult.stats.percentSaved}% reduction</span>
+    </div>
+  `;
+
+  modal.style.display = 'flex';
+
+  // Close handlers
+  const closeBtn = document.getElementById('closeChangesModal');
+  const backdrop = modal.querySelector('.modal-backdrop');
+
+  const closeModal = () => {
+    modal.style.display = 'none';
+  };
+
+  if (closeBtn) closeBtn.onclick = closeModal;
+  if (backdrop) backdrop.onclick = closeModal;
 }
 
 // ============================================================================
@@ -598,9 +783,14 @@ function setupEventListeners() {
     chrome.runtime.openOptionsPage();
   });
   
-  // History button (shortcut)
+  // History button - opens options page to Data Management section
   document.getElementById('historyBtn').addEventListener('click', () => {
-    document.querySelector('.tab[data-tab="history"]').click();
+    chrome.runtime.openOptionsPage(() => {
+      // Send message to options page to navigate to data section
+      setTimeout(() => {
+        chrome.runtime.sendMessage({ action: 'navigateToSection', section: 'data' });
+      }, 100);
+    });
   });
   
   // Handle messages from content script
@@ -618,20 +808,14 @@ function setupEventListeners() {
 // ============================================================================
 
 function showToast(message, type = 'info') {
-  // HTML uses 'toast' directly, not 'toastContainer'
   const toast = document.getElementById('toast');
   if (!toast) return;
 
-  toast.className = `toast ${type}`;
+  toast.className = `toast ${type} show`;
   toast.textContent = message;
-  toast.style.display = 'block';
-  toast.style.opacity = '1';
 
   setTimeout(() => {
-    toast.style.opacity = '0';
-    setTimeout(() => {
-      toast.style.display = 'none';
-    }, 300);
+    toast.classList.remove('show');
   }, 2500);
 }
 

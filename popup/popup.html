@@ -10,79 +10,88 @@
 <body>
   <div class="popup-container">
     <!-- ASCII Banner -->
-    <pre class="ascii-banner">░▒█▀▀█░█▀▀▄░▄▀▀▄░█▀▄▀█░▄▀▀▄░▀█▀░░░▒█░░▒█░█▀▀▄░▒█░▄▀░▒█▀▀▄░█▀▀░█▀▀▄
-░▒█▄▄█░█▄▄▀░█░░█░█░▀░█░█▄▄█░░█░░░░▒█▀▀▀█░█▄▄█░▒█▀▄░░▒█░░░░█▀▀░█▄▄▀
-░▒█░░░░▀░▀▀░░▀▀░░▀░░▒▀░█░░░░░▀░░░░▒█░░▒█░▀░░▀░▒█░▒█░▒█▄▄▀░▀▀▀░▀░▀▀</pre>
-
-    <!-- Header -->
-    <header class="header">
-      <div class="logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-        </svg>
-        <span>PrompthaKCer</span>
-      </div>
-      <div class="header-actions">
-        <button class="icon-btn" id="historyBtn" title="View History">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </button>
-        <button class="icon-btn" id="settingsBtn" title="Settings">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
-          </svg>
-        </button>
-      </div>
+    <header class="header ascii-header-popup">
+      <pre class="ascii-banner">
+.:/=================> [ h a K C . a i | P R E S E N T S ] <=================\:.
+'         ░█▀█░█▀▄░█▀█░█▄█░█▀█░▀█▀░         ░█░█░█▀█░█░█░█▀▀░█▀▀░█▀▄          '
+'         ░█▀▀░█▀▄░█░█░█░█░█▀▀░░█░          ░█▀█░█▀█░█▀▄░█░░░█▀▀░█▀▄          '
+'         ░▀░░░▀░▀░▀▀▀░▀░▀░▀░░░░▀░          ░▀░▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀          '
+.:\=========================================================================/:.
+</pre>
     </header>
+
+    <!-- Header Actions -->
+    <div class="header-actions-bar">
+      <button class="action-btn-wide" id="historyBtn" title="View History">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M10.6972,0.468433 C12.354,1.06178 13.7689,2.18485 14.7228,3.66372 C15.6766,5.14258 16.1163,6.89471 15.9736,8.64872 C15.8309,10.4027 15.1138,12.0607 13.9334,13.366 C12.753,14.6712 11.1752,15.5508 9.4443,15.8685 C7.71342,16.1863 5.92606,15.9244 4.35906,15.1235 C2.79206,14.3226 1.53287,13.0274 0.776508,11.4384 C0.539137,10.9397 0.750962,10.343 1.24963,10.1057 C1.74831,9.86829 2.34499,10.0801 2.58236,10.5788 C3.14963,11.7705 4.09402,12.742 5.26927,13.3426 C6.44452,13.9433 7.78504,14.1397 9.08321,13.9014 C10.3814,13.6631 11.5647,13.0034 12.45,12.0245 C13.3353,11.0456 13.8731,9.80205 13.9801,8.48654 C14.0872,7.17103 13.7574,5.85694 13.042,4.74779 C12.3266,3.63864 11.2655,2.79633 10.0229,2.35133 C8.78032,1.90632 7.42568,1.88344 6.1688,2.28624 C5.34644,2.54978 4.59596,2.98593 3.96459,3.5597 L4.69779,4.29291 C5.32776,4.92287 4.88159,6.00002 3.99069,6.00002 L0,6.00002 L0,2.00933 C0,1.11842 1.07714,0.672258 1.70711,1.30222 L2.54916,2.14428 C3.40537,1.3473 4.43126,0.742882 5.55842,0.381656 C7.23428,-0.155411 9.04046,-0.124911 10.6972,0.468433 Z M8,4 C8.55229,4 9,4.44772 9,5 L9,7.58579 L10.7071,9.29289 C11.0976,9.68342 11.0976,10.3166 10.7071,10.7071 C10.3166,11.0976 9.68342,11.0976 9.29289,10.7071 L7,8.41421 L7,5 C7,4.44772 7.44772,4 8,4 Z"/>
+        </svg>
+        <pre class="btn-ascii">░█░█░▀█▀░█▀▀░▀█▀░█▀█░█▀▄░█░█
+░█▀█░░█░░▀▀█░░█░░█░█░█▀▄░░█░
+░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀░░▀░</pre>
+      </button>
+      <button class="action-btn-wide" id="settingsBtn" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M14.2788 2.15224C13.9085 2 13.439 2 12.5 2C11.561 2 11.0915 2 10.7212 2.15224C10.2274 2.35523 9.83509 2.74458 9.63056 3.23463C9.53719 3.45834 9.50065 3.7185 9.48635 4.09799C9.46534 4.65568 9.17716 5.17189 8.69017 5.45093C8.20318 5.72996 7.60864 5.71954 7.11149 5.45876C6.77318 5.2813 6.52789 5.18262 6.28599 5.15102C5.75609 5.08178 5.22018 5.22429 4.79616 5.5472C4.47814 5.78938 4.24339 6.1929 3.7739 6.99993C3.30441 7.80697 3.06967 8.21048 3.01735 8.60491C2.94758 9.1308 3.09118 9.66266 3.41655 10.0835C3.56506 10.2756 3.77377 10.437 4.0977 10.639C4.57391 10.936 4.88032 11.4419 4.88029 12C4.88026 12.5581 4.57386 13.0639 4.0977 13.3608C3.77372 13.5629 3.56497 13.7244 3.41645 13.9165C3.09108 14.3373 2.94749 14.8691 3.01725 15.395C3.06957 15.7894 3.30432 16.193 3.7738 17C4.24329 17.807 4.47804 18.2106 4.79606 18.4527C5.22008 18.7756 5.75599 18.9181 6.28589 18.8489C6.52778 18.8173 6.77305 18.7186 7.11133 18.5412C7.60852 18.2804 8.2031 18.27 8.69012 18.549C9.17714 18.8281 9.46533 19.3443 9.48635 19.9021C9.50065 20.2815 9.53719 20.5417 9.63056 20.7654C9.83509 21.2554 10.2274 21.6448 10.7212 21.8478C11.0915 22 11.561 22 12.5 22C13.439 22 13.9085 22 14.2788 21.8478C14.7726 21.6448 15.1649 21.2554 15.3694 20.7654C15.4628 20.5417 15.4994 20.2815 15.5137 19.902C15.5347 19.3443 15.8228 18.8281 16.3098 18.549C16.7968 18.2699 17.3914 18.2804 17.8886 18.5412C18.2269 18.7186 18.4721 18.8172 18.714 18.8488C19.2439 18.9181 19.7798 18.7756 20.2038 18.4527C20.5219 18.2105 20.7566 17.807 21.2261 16.9999C21.6956 16.1929 21.9303 15.7894 21.9827 15.395C22.0524 14.8691 21.9088 14.3372 21.5835 13.9164C21.4349 13.7243 21.2262 13.5628 20.9022 13.3608C20.4261 13.0639 20.1197 12.558 20.1197 11.9999C20.1197 11.4418 20.4261 10.9361 20.9022 10.6392C21.2263 10.4371 21.435 10.2757 21.5836 10.0835C21.9089 9.66273 22.0525 9.13087 21.9828 8.60497C21.9304 8.21055 21.6957 7.80703 21.2262 7C20.7567 6.19297 20.522 5.78945 20.2039 5.54727C19.7799 5.22436 19.244 5.08185 18.7141 5.15109C18.4722 5.18269 18.2269 5.28136 17.8887 5.4588C17.3915 5.71959 16.7969 5.73002 16.3099 5.45096C15.8229 5.17191 15.5347 4.65566 15.5136 4.09794C15.4993 3.71848 15.4628 3.45833 15.3694 3.23463C15.1649 2.74458 14.7726 2.35523 14.2788 2.15224ZM12.5 15C14.1695 15 15.5228 13.6569 15.5228 12C15.5228 10.3431 14.1695 9 12.5 9C10.8305 9 9.47716 10.3431 9.47716 12C9.47716 13.6569 10.8305 15 12.5 15Z"/>
+        </svg>
+        <pre class="btn-ascii">░█▀▀░█▀▀░▀█▀░▀█▀░▀█▀░█▀█░█▀▀░█▀▀
+░▀▀█░█▀▀░░█░░░█░░░█░░█░█░█░█░▀▀█
+░▀▀▀░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀</pre>
+      </button>
+    </div>
 
     <!-- Tab Navigation -->
     <nav class="tabs">
-      <button class="tab active" data-tab="optimize">Optimize</button>
-      <button class="tab" data-tab="history">History</button>
+      <button class="tab active" data-tab="optimize">Prompt Tester</button>
       <button class="tab" data-tab="learn">Learn</button>
     </nav>
 
     <!-- Optimize Tab -->
     <main class="tab-content active" id="optimize-tab">
-      <!-- Compression Level Selector -->
-      <div class="compression-selector">
-        <label>Compression Level:</label>
-        <div class="compression-options">
-          <button class="compression-btn" data-level="minimal" title="Light touch">1</button>
-          <button class="compression-btn active" data-level="balanced" title="Recommended">2</button>
-          <button class="compression-btn" data-level="aggressive" title="Maximum compression">3</button>
-          <button class="compression-btn" data-level="maximum" title="Extreme (may alter meaning)">4</button>
+      <!-- Compression Controls (always visible) -->
+      <div class="compression-controls">
+        <div class="compression-header">
+          <span class="indicator-label">Compression:</span>
+          <span class="indicator-value" id="compressionLevelDisplay">Medium</span>
         </div>
-        <label class="checkbox-label">
+        <div class="slider-row">
+          <span class="slider-label">Light</span>
+          <input type="range" id="compressionSlider" min="1" max="4" value="2" class="compression-slider">
+          <span class="slider-label">Max</span>
+        </div>
+        <label class="checkbox-label compact">
           <input type="checkbox" id="enableDeepCompression">
-          <span>Enable deep compression</span>
+          <span>Deep compression</span>
         </label>
       </div>
 
-      <!-- Input Area -->
-      <div class="input-section">
-        <label for="promptInput">Your Prompt:</label>
-        <textarea id="promptInput" placeholder="Paste or type your prompt here...&#10;&#10;Example: I was wondering if you could please help me write a detailed blog post about the importance of healthy eating habits. I would really appreciate it if you could include some tips and examples."></textarea>
-        <div class="input-actions">
-          <button class="btn btn-secondary" id="pasteBtn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-            </svg>
-            Paste
-          </button>
-          <button class="btn btn-secondary" id="clearBtn">Clear</button>
-          <span class="char-count" id="inputCount">0 chars</span>
+      <!-- Prompt Tester Controls (hidden by default) -->
+      <div class="prompt-tester-panel" id="promptTesterPanel" style="display: none;">
+        <!-- Input Area -->
+        <div class="input-section" id="inputSection">
+          <textarea id="promptInput" placeholder="Paste or type your prompt here..."></textarea>
+          <div class="input-actions">
+            <button class="btn btn-secondary btn-sm" id="pasteBtn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Paste
+            </button>
+            <button class="btn btn-secondary btn-sm" id="clearBtn">Clear</button>
+            <span class="char-count" id="inputCount">0 chars</span>
+          </div>
         </div>
-      </div>
 
-      <!-- Optimize Button -->
-      <button class="btn btn-primary btn-large" id="optimizeBtn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-        </svg>
-        Optimize Prompt
-      </button>
+        <!-- Optimize Button -->
+        <button class="btn btn-primary btn-large" id="optimizeBtn">
+          <svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor">
+            <path d="M45.6,18.7,41,14.9V7.5a1,1,0,0,0-.6-.9L30.5,2.1h-.4l-.6.2L24,5.9,18.5,2.2,17.9,2h-.4L7.6,6.6a1,1,0,0,0-.6.9v7.4L2.4,18.7a.8.8,0,0,0-.4.8v9H2a.8.8,0,0,0,.4.8L7,33.1v7.4a1,1,0,0,0,.6.9l9.9,4.5h.4l.6-.2L24,42.1l5.5,3.7.6.2h.4l9.9-4.5a1,1,0,0,0,.6-.9V33.1l4.6-3.8a.8.8,0,0,0,.4-.7V19.4h0A.8.8,0,0,0,45.6,18.7Zm-5.1,6.8H42v1.6l-3.5,2.8-.4.3-.4-.2a1.4,1.4,0,0,0-2,.7,1.5,1.5,0,0,0,.6,2l.7.3h0v5.4l-6.6,3.1-4.2-2.8-.7-.5V25.5H27a1.5,1.5,0,0,0,0-3H25.5V9.7l.7-.5,4.2-2.8L37,9.5v5.4h0l-.7.3a1.5,1.5,0,0,0-.6,2,1.4,1.4,0,0,0,1.3.9l.7-.2.4-.2.4.3L42,20.9v1.6H40.5a1.5,1.5,0,0,0,0,3ZM21,25.5h1.5V38.3l-.7.5-4.2,2.8L11,38.5V33.1h0l.7-.3a1.5,1.5,0,0,0,.6-2,1.4,1.4,0,0,0-2-.7l-.4.2-.4-.3L6,27.1V25.5H7.5a1.5,1.5,0,0,0,0-3H6V20.9l3.5-2.8.4-.3.4.2.7.2a1.4,1.4,0,0,0,1.3-.9,1.5,1.5,0,0,0-.6-2L11,15h0V9.5l6.6-3.1,4.2,2.8.7.5V22.5H21a1.5,1.5,0,0,0,0,3Z"/>
+            <path d="M13.9,9.9a1.8,1.8,0,0,0,0,2.2l2.6,2.5v2.8l-4,4v5.2l4,4v2.8l-2.6,2.5a1.8,1.8,0,0,0,0,2.2,1.5,1.5,0,0,0,1.1.4,1.5,1.5,0,0,0,1.1-.4l3.4-3.5V29.4l-4-4V22.6l4-4V13.4L16.1,9.9A1.8,1.8,0,0,0,13.9,9.9Z"/>
+            <path d="M31.5,14.6l2.6-2.5a1.8,1.8,0,0,0,0-2.2,1.8,1.8,0,0,0-2.2,0l-3.4,3.5v5.2l4,4v2.8l-4,4v5.2l3.4,3.5a1.7,1.7,0,0,0,2.2,0,1.8,1.8,0,0,0,0-2.2l-2.6-2.5V30.6l4-4V21.4l-4-4Z"/>
+          </svg>
+          Optimize
+        </button>
+      </div>
 
       <!-- Results Section (hidden initially) -->
       <div class="results-section" id="resultsSection" style="display: none;">

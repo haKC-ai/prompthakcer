@@ -9,6 +9,28 @@
   box-sizing: border-box;
 }
 
+/* Apply border-radius to all box elements */
+input,
+select,
+button,
+textarea,
+.card,
+.modal-content,
+.site-item,
+.rule-item,
+.setting-row,
+.shortcut-row,
+.toast,
+.data-stat,
+.test-output,
+.nav-btn,
+.rules-update-card,
+.rules-header,
+.rules-list,
+.ascii-header {
+  border-radius: 12px;
+}
+
 :root {
   --bg-base: #0a0a14;
   --bg-card: #12121f;
@@ -66,6 +88,23 @@ body::before {
   margin-bottom: 32px;
 }
 
+.ascii-header {
+  margin-bottom: 24px;
+}
+
+.ascii-header .ascii-banner {
+  font-size: 10px;
+  line-height: 1.2;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: pre;
+  font-family: var(--font);
+  text-align: center;
+  margin: 0;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -77,6 +116,53 @@ body::before {
 .logo svg {
   color: var(--cyan);
   filter: drop-shadow(0 0 10px var(--cyan));
+}
+
+/* ========== RULES UPDATE CARD ========== */
+.rules-update-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.rules-update-info {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.rules-update-info > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rules-update-info .label {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.rules-update-info span:not(.label) {
+  font-size: 14px;
+  color: var(--cyan);
+  font-weight: 500;
+}
+
+#pullLatestRulesBtn {
+  white-space: nowrap;
+}
+
+#pullLatestRulesBtn .spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .logo-text h1 {

@@ -26,8 +26,7 @@
   right: 50px;
   top: 50%;
   transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
+  padding: 6px 10px;
   border: none;
   border-radius: 8px;
   background: linear-gradient(135deg, rgba(0, 255, 255, 0.15) 0%, rgba(255, 0, 255, 0.15) 100%);
@@ -37,9 +36,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   transition: all 0.3s ease;
   z-index: 9999;
   backdrop-filter: blur(8px);
+}
+
+.pf-trigger-ascii {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 5px;
+  line-height: 1.1;
+  margin: 0;
+  background: linear-gradient(135deg, var(--pf-cyan) 0%, var(--pf-magenta) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: pre;
 }
 
 .prompthakcer-trigger:hover {

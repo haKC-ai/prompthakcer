@@ -11,18 +11,15 @@
 </head>
 <body>
   <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <div class="logo">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-        </svg>
-        <div class="logo-text">
-          <h1>PrompthaKCer</h1>
-          <span class="version">v1.0.0</span>
-        </div>
-      </div>
-      <p class="tagline">AI Prompt Optimizer - Save tokens, write better prompts</p>
+    <!-- ASCII Banner Header -->
+    <header class="header ascii-header">
+      <pre class="ascii-banner">
+.:/====================> [ h a K C . a i | P R E S E N T S ] <====================\:.
+'            ░█▀█░█▀▄░█▀█░█▄█░█▀█░▀█▀░            ░█░█░█▀█░█░█░█▀▀░█▀▀░█▀▄          '
+'            ░█▀▀░█▀▄░█░█░█░█░█▀▀░░█░             ░█▀█░█▀█░█▀▄░█░░░█▀▀░█▀▄          '
+'            ░▀░░░▀░▀░▀▀▀░▀░▀░▀░░░░▀░             ░▀░▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀          '
+.:\=============================> [ O P T I O N S ] <=============================/:.
+</pre>
     </header>
 
     <!-- Navigation -->
@@ -213,7 +210,32 @@
       <section class="section" id="rules-section">
         <h2 class="section-title">Optimization Rules</h2>
         <p class="section-desc">Enable or disable individual optimization rules</p>
-        
+
+        <!-- Rules Update Info -->
+        <div class="card rules-update-card">
+          <div class="rules-update-info">
+            <div class="rules-version">
+              <span class="label">Rules Version:</span>
+              <span id="rulesVersion">Loading...</span>
+            </div>
+            <div class="rules-count">
+              <span class="label">Total Rules:</span>
+              <span id="rulesCount">0</span>
+            </div>
+            <div class="rules-updated">
+              <span class="label">Last Updated:</span>
+              <span id="rulesUpdated">Never</span>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="pullLatestRulesBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12a9 9 0 1 1-9-9"/>
+              <polyline points="21 3 21 9 15 9"/>
+            </svg>
+            Pull Latest Rulesets
+          </button>
+        </div>
+
         <div class="rules-header">
           <select id="categoryFilter">
             <option value="all">All Categories</option>
@@ -223,7 +245,8 @@
             <option value="qualifiers">Qualifiers</option>
             <option value="verbosity">Verbosity</option>
             <option value="structure">Structure</option>
-            <option value="aggressive">Aggressive</option>
+            <option value="compression">Deep Compression</option>
+            <option value="security">Security (DLP)</option>
             <option value="custom">Custom Rules</option>
           </select>
           <button class="btn btn-secondary" id="resetRulesBtn">
@@ -232,6 +255,13 @@
               <path d="M3 3v5h5"/>
             </svg>
             Reset to Defaults
+          </button>
+          <button class="btn btn-primary" id="enableAllRulesBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 11 12 14 22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+            Enable All Rules
           </button>
         </div>
         
@@ -286,9 +316,7 @@
             <textarea id="testInput" rows="4" placeholder="I was wondering if you could please help me with something. I would really appreciate it if you could provide a detailed explanation."></textarea>
           </div>
           <button class="btn btn-secondary" id="testRulesBtn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
+            <span class="btn-icon">⬡</span>
             Test Optimization
           </button>
           <div class="test-results" id="testResults" style="display: none;">

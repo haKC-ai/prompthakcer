@@ -1,46 +1,138 @@
-# Prompt haKCer - AI Prompt Optimizer
+```                 
+                              ██████████                                                              
+                             █▓       ░██                                                             
+                             █▒        ██ T H E   P I N A C L E   O F  H A K C I N G   Q U A L I T Y   
+                 █████████████░        █████████████████ ████████████ ████████████      ████████████  
+                ██         ███░        ███▓▒▒▒▒▒▒▒▒▒▒▒██ █▒▒▒▒▒▒▒▒▓████        █████████▓          ▒█  
+                ██         ███         ███▒▒▒▒▒▒▒▒▒▒▒▒▓██████████████▓        ███▓▒      ▒▓░       ▒█  
+                ██         ███        ░██▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓██▓▒▒▒▒▒▒▒▒█▓        ███░       ░██░       ▒█  
+                ██         ███        ▒██▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▓▒▒▒▒▒▒▒▓▒        ██  ▓        ██░       ▓█  
+                ██         ██▓        ███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▓▒▒▒▒▒▒▒▓▒       ██   █        ██░       ▓  
+                ██         ██▒        ██▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▒▒▒▒▒▒▒▓▒      ██    █        ▓█████████  
+                ██                    ██▒▒▒▒▒▒▒▒█▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒   ▒███████ █░       ░▓        █  
+                ██         ░░         ██▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓█ ▓        ░█ ▓       ░▒       ░█  
+                ██         ██░       ░█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓█ █░        ▒ █                ░█ 
+                ██         ██        ▓█▒▒▒▒▒▒▒▒▒██▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓█ █░        ▒ █░               ▒█  
+                 ██████████  ███████████▓██▓▓█▓█  █▓▒▒▒▒▒▒▒▒▒▓██▓██   █▓▓▓▓▓▓▓█    █▓▓▓▓▓▓▓▓▓▓▓▓▓▓██ 
+               .:/====================█▓██▓██=========████▓█▓█ ███======> [ P R E S E N T S ] ====\:.
+                     /\                 ██▓██           █▓▓▓██ ██                                    
+              _ __  /  \__________________█▓█_____________██▓██______________________________ _  _    _ 
+             _ __ \/ /\____________________██_____________ ███________ _________ __ _______ _     
+                 \  /        ░█▀█░█▀▄░█▀█░█▄█░█▀█░▀█▀░         ░█░█░█▀█░█░█░█▀▀░█▀▀░█▀▄                   
+                  \/         ░█▀▀░█▀▄░█░█░█░█░█▀▀░░█░          ░█▀█░█▀█░█▀▄░█░░░█▀▀░█▀▄                   
+                             ░▀░░░▀░▀░▀▀▀░▀░▀░▀░░░░▀░          ░▀░▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀  
+```
+
+
+
 
 <p align="center">
-  <img src="icons/icon128.png" alt="PrompthaKCer Logo" width="128" height="128">
-</p>
-
-<p align="center">
-  <strong>Save tokens. Write better prompts. Supercharge your AI conversations.</strong>
-</p>
-
-<p align="center">
-  <a href="#why-you-need-this">Why You NEED This</a> |
-  <a href="#features">Features</a> |
-  <a href="#installation">Installation</a> |
-  <a href="#usage">Usage</a> |
-  <a href="#compression-levels">Compression</a> |
-  <a href="#custom-rules">Custom Rules</a> |
-  <a href="#supported-sites">Sites</a>
+  <img src="icons/icon128.png" alt="PrompthaKCer Logo" width="96" height="96" align="middle">
+  <strong><font size="3">Save tokens. Be secure. Write better prompts. It's got a haKC button.</font></strong>
+  <img src="https://raw.githubusercontent.com/haKC-ai/haKCAssets/refs/heads/main/hakc_button.png" width="128"  align="middle">
 </p>
 
 ---
 
-## Why You NEED This Tool
+<p align="center">
+  <img src="https://img.shields.io/badge/Chrome-Extension-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=0a0a14" alt="Chrome Extension">
+  <img src="https://img.shields.io/badge/Manifest-V3-00C853?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=0a0a14" alt="Manifest V3">
+  <img src="https://img.shields.io/badge/Privacy-100%25%20Local-00ffff?style=for-the-badge&logo=shield&logoColor=white&labelColor=0a0a14" alt="Privacy">
+</p>
+
+<p align="center">
+  <a href="#-why-you-need-this">Why haKC?</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-installation">Install</a> •
+  <a href="#-usage">Usage</a> •
+  <a href="#-compression-levels">Compression</a> •
+  <a href="#-supported-sites">Sites</a>
+</p>
+
+---
+
+<p align="left">
+  <a href="https://github.com/haKC-ai/prompthakcer/releases"><img src="https://img.shields.io/github/v/release/haKC-ai/prompthakcer?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a14&color=00ffff" alt="Release"></a>
+  <a href="https://github.com/haKC-ai/prompthakcer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/haKC-ai/prompthakcer?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=0a0a14&color=00ffff" alt="License"></a>
+  <a href="https://github.com/haKC-ai/prompthakcer/stargazers"><img src="https://img.shields.io/github/stars/haKC-ai/prompthakcer?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a14&color=ff00ff" alt="Stars"></a>
+  <a href="https://github.com/haKC-ai/prompthakcer/issues"><img src="https://img.shields.io/github/issues/haKC-ai/prompthakcer?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a14&color=00ffff" alt="Issues"></a>
+</p>
+
+## ⬡ Why You NEED This
 
 In the age of AI, your prompt is your power. But are you leaking sensitive data? Wasting tokens on fluff? Confusing the model with verbose instructions?
 
-**Prompt haKCer** gives you the control you deserve:
+<table>
+<tr>
+<td width="50%">
 
-*   **🛡️ Stop Data Leaks (DLP):** Automatically redact credit cards, emails, and API keys *before* they leave your browser. Don't let a copy-paste error compromise your security.
-*   **💰 Slash Token Costs:** Reduce prompt size by up to 70% without losing meaning. Save money on API calls and fit more context into limited windows.
-*   **🧠 Boost AI Performance:** Models follow clear, concise instructions better. Strip the fluff and get sharper, more accurate responses.
-*   **⚡ Workflow Velocity:** Optimize with a single click or hotkey. No more manual editing or second-guessing.
+### Before haKC
+```
+Could you please help me? I was wondering
+if you could provide a detailed explanation
+of how machine learning works. I would
+really appreciate it if you could include
+some examples. Thank you so much!
+```
+**~45 tokens**
 
-Don't just chat. **haKC.**
+</td>
+<td width="50%">
+
+### After haKC
+```
+Explain machine learning with examples.
+```
+**~7 tokens** | **84% reduction**
+
+</td>
+</tr>
+</table>
+
+| Feature | Benefit |
+|---------|---------|
+| **DLP Security** | Auto-redact credit cards, emails, SSNs, API keys |
+| **Token Savings** | Reduce costs by 15-70% on API calls |
+| **Better Responses** | Clear prompts = sharper AI outputs |
+| **One Click** | Optimize with hotkey or button |
+| **Live Rules** | Auto-updating rules from GitHub |
+| **Full Control** | Export all data for your own analysis |
 
 ---
 
-## Features
+## ⬡ Features
+
+```mermaid
+mindmap
+  root((PrompthaKCer))
+    Optimization
+      30+ Rules
+      5 Compression Levels
+      Token Counting
+      Real-time Stats
+    Security
+      Credit Card Redaction
+      Email Redaction
+      SSN Protection
+      API Key Detection
+    Platforms
+      ChatGPT
+      Claude
+      Gemini
+      Grok
+      Perplexity
+      Custom Sites
+    Customization
+      Custom Rules
+      Site Config
+      Keyboard Shortcuts
+      Import/Export
+```
 
 ### Smart Prompt Optimization
 - **Token Savings**: Reduce prompt length by 15-70% without losing meaning
 - **5 Compression Levels**: From light formatting to aggressive compression
-- **30+ Built-in Rules**: Professionally crafted optimization patterns
+- **38+ Built-in Rules**: Professionally crafted optimization patterns
 - **Real-time Stats**: See exactly how many tokens you're saving
 
 ### Universal Compatibility
@@ -58,199 +150,185 @@ Don't just chat. **haKC.**
 - **Toggle Individual Rules**: Fine-tune which optimizations apply
 - **Custom Rules**: Create your own regex-based rules
 - **Site Configuration**: Enable/disable for specific platforms
-- **Keyboard Shortcuts**: Quick access with Ctrl+Shift+O
+- **Keyboard Shortcuts**: Quick access with `Ctrl+Shift+O`
 
 ---
 
-## Installation
+## ⬡ Installation
 
 ### From Chrome Web Store
+<a href="https://chromewebstore.google.com/detail/prompt-hakcer-hakc-your-p/ihdhaipofhijolleameimgfmmafgpncp?hl=en-US"><img src="https://img.shields.io/badge/Chrome%20Web%20Store-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store"></a>
+
 1. Visit the [PrompthaKCer Chrome Web Store page](#)
 2. Click "Add to Chrome"
 3. Click "Add Extension" to confirm
 
 ### From Source (Developer Mode)
-1. Download or clone this repository
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" (top right toggle)
-4. Click "Load unpacked"
-5. Select the `prompthakcer` folder
-6. The extension icon appears in your toolbar
+
+```bash
+# Clone the repository
+git clone https://github.com/haKC-ai/prompthakcer.git
+
+# Navigate to chrome://extensions/
+# Enable "Developer mode"
+# Click "Load unpacked"
+# Select the prompthakcer folder
+```
 
 ---
 
-## Usage
+## ⬡ Usage
+
+```mermaid
+flowchart LR
+    subgraph Input["Input"]
+        A[Type Prompt]
+        B[Paste Text]
+    end
+
+    subgraph Action["⬡ haKC"]
+        C[Click Button]
+        D[Ctrl+Shift+O]
+        E[Right-Click Menu]
+    end
+
+    subgraph Output["Output"]
+        F[Optimized Prompt]
+        G[Token Stats]
+        H[Copy/Apply]
+    end
+
+    A --> C & D & E
+    B --> C & D & E
+    C & D & E --> F & G
+    F --> H
+```
 
 ### On AI Chat Pages
 1. Navigate to any supported AI chat (ChatGPT, Claude, etc.)
 2. Type your prompt in the input field
-3. Click the haKC button or press `Ctrl+Shift+O`
+3. Click the **⬡ haKC** button or press `Ctrl+Shift+O`
 4. Review the optimized version
 5. Click "Apply" to use it
 
 ### Standalone Mode (Popup)
 1. Click the PrompthaKCer icon in your toolbar
 2. Paste or type your prompt
-3. Choose compression level
-4. Click "Optimize Prompt"
+3. Choose compression level with the slider
+4. Click "Optimize"
 5. Copy the result
-
-### Right-Click Context Menu
-1. Select text anywhere on a page
-2. Right-click and select "Optimize with PrompthaKCer"
-3. The optimized text is copied to clipboard
 
 ---
 
-## Compression Levels
+## ⬡ Compression Levels
 
-| Level | Icon | Description | Token Savings |
-|-------|------|-------------|---------------|
-| **None** | 1 | Formatting cleanup only | 5-10% |
-| **Light** | 2 | Remove obvious fluff | 15-25% |
-| **Medium** | 3 | Balanced optimization (recommended) | 25-40% |
-| **Heavy** | 4 | Aggressive compression | 40-60% |
-| **Maximum** | 5 | Extreme compression | 50-70% |
+```mermaid
+graph LR
+    subgraph Levels["Compression Levels"]
+        L1["[1] Light<br/>15-25%"]
+        L2["[2] Medium<br/>25-40%"]
+        L3["[3] Heavy<br/>40-60%"]
+        L4["[4] Maximum<br/>50-70%"]
+    end
+
+    L1 -->|More Aggressive| L2
+    L2 -->|More Aggressive| L3
+    L3 -->|More Aggressive| L4
+
+    style L1 fill:#1a1a2e,stroke:#00ffff,color:#00ffff
+    style L2 fill:#1a1a2e,stroke:#00ffff,color:#00ffff
+    style L3 fill:#1a1a2e,stroke:#ff00ff,color:#ff00ff
+    style L4 fill:#1a1a2e,stroke:#ff00ff,color:#ff00ff
+```
+
+| Level | Description | Savings | Best For |
+|:-----:|-------------|:-------:|----------|
+| **Light** | Remove obvious fluff, keep tone | 15-25% | Professional emails |
+| **Medium** | Balanced optimization | 25-40% | General use |
+| **Heavy** | Aggressive compression | 40-60% | API calls |
+| **Maximum** | Extreme reduction | 50-70% | Token-limited contexts |
 
 ### What Gets Optimized?
 
-**Fluff Removal**
-- "Could you please help me..." becomes "Help me..."
-- "I was wondering if..." is removed
-- "just", "really", "very", "basically" are removed
-
-**Redundancy Elimination**
-- "I want you to write..." becomes "Write..."
-- "in order to" becomes "to"
-- "due to the fact that" becomes "because"
-
-**Structure Optimization**
-- "provide a detailed explanation of" becomes "explain in detail:"
-- "create a list of" becomes "list:"
+| Category | Before | After |
+|----------|--------|-------|
+| **Fluff** | "Could you please help me..." | "Help me..." |
+| **Fillers** | "just", "really", "very", "basically" | *(removed)* |
+| **Redundancy** | "I want you to write..." | "Write..." |
+| **Verbose** | "in order to" | "to" |
+| **Structure** | "provide a detailed explanation of" | "explain:" |
+| **Security** | "4532-1234-5678-9012" | "[REDACTED]" |
 
 ---
 
-## Custom Rules
+## ⬡ Supported Sites
 
-Create your own optimization rules in Settings > Custom Rules:
+<p align="center">
+  <img src="https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white" alt="ChatGPT">
+  <img src="https://img.shields.io/badge/Claude-000000?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude">
+  <img src="https://img.shields.io/badge/Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Gemini">
+  <img src="https://img.shields.io/badge/Grok-000000?style=for-the-badge&logo=x&logoColor=white" alt="Grok">
+  <img src="https://img.shields.io/badge/Perplexity-20808D?style=for-the-badge&logo=perplexity&logoColor=white" alt="Perplexity">
+</p>
 
-### Example: Remove Emoji
-```
-Name: Remove Emoji
-Pattern: [\u{1F300}-\u{1F9FF}]
-Flags: gu
-Replace: (empty)
-```
-
-### Example: Shorten "Please note that"
-```
-Name: Shorten Please Note
-Pattern: please note that
-Flags: gi
-Replace: note:
-```
-
-### Example: Remove Timestamps
-```
-Name: Remove Timestamps
-Pattern: \[\d{1,2}:\d{2}(:\d{2})?\]
-Flags: g
-Replace: (empty)
-```
+| Platform | URLs | Status |
+|----------|------|:------:|
+| **ChatGPT** | chat.openai.com, chatgpt.com | ✅ |
+| **Claude** | claude.ai | ✅ |
+| **Gemini** | gemini.google.com | ✅ |
+| **Grok** | grok.x.ai, x.com/i/grok | ✅ |
+| **Perplexity** | perplexity.ai | ✅ |
+| **Copilot** | copilot.microsoft.com | ✅ |
+| **Poe** | poe.com | ✅ |
+| **HuggingFace** | huggingface.co/chat | ✅ |
+| **You.com** | you.com | ✅ |
+| **Phind** | phind.com | ✅ |
+| **Custom** | *Any URL you add* | ✅ |
 
 ---
 
-## Supported Sites
-
-### Built-in Support
-| Site | Status |
-|------|--------|
-| ChatGPT (chat.openai.com, chatgpt.com) | Supported |
-| Claude (claude.ai) | Supported |
-| Gemini (gemini.google.com) | Supported |
-| Grok (grok.x.ai, x.com/i/grok) | Supported |
-| Perplexity (perplexity.ai) | Supported |
-| Microsoft Copilot | Supported |
-| Poe (poe.com) | Supported |
-| HuggingFace Chat | Supported |
-| You.com | Supported |
-| Phind | Supported |
-
-### Add Custom Sites
-1. Go to Settings > Sites
-2. Enter site name and URL patterns
-3. Optionally specify input selectors
-4. Click "Add Site"
-
----
-
-## Keyboard Shortcuts
-
-| Shortcut | Action |
-|----------|--------|
-| `Ctrl+Shift+O` | Optimize current prompt on page |
-| `Alt+P` | Open PrompthaKCer popup |
-
-Customize shortcuts at `chrome://extensions/shortcuts`
-
----
-
-## How It Works
+## ⬡ Architecture
 
 ```mermaid
 flowchart TB
-    subgraph User["👤 User"]
-        A[Type prompt in AI chat]
-        B[Click PrompthaKCer button]
-        C[Use popup standalone]
-    end
-
-    subgraph Detection["🔍 Site Detection"]
-        D[SiteDetector]
-        D --> |Matches URL pattern| E[Identify AI Platform]
-        E --> F[Find input elements]
-    end
-
-    subgraph Engine["⚡ Rules Engine"]
-        G[Load compression level]
-        H[Apply 30+ optimization rules]
-        I[Calculate token savings]
-
-        G --> H --> I
-
-        subgraph Rules["📋 Rule Categories"]
-            R1[Fluff Removal]
-            R2[Redundancy Elimination]
-            R3[Structure Optimization]
-            R4[Whitespace Cleanup]
-            R5[Custom User Rules]
+    subgraph Browser["Chrome Browser"]
+        subgraph Extension["PrompthaKCer Extension"]
+            SW["Service Worker"]
+            POP["Popup UI"]
+            OPT["Options Page"]
+            CS["Content Scripts"]
         end
 
-        H --> Rules
+        subgraph Libs["Shared Libraries"]
+            RE["rules-engine.js<br/>38+ Rules"]
+            SD["site-detector.js<br/>10+ Sites"]
+            HM["history-manager.js"]
+        end
+
+        subgraph Storage["Local Storage"]
+            HIST[(History)]
+            SETT[(Settings)]
+            RULES[(Custom Rules)]
+        end
     end
 
-    subgraph Output["📤 Output"]
-        J[Show optimized prompt]
-        K[Display stats]
-        L[Save to history]
+    subgraph Remote["GitHub"]
+        REMOTE["rules.json<br/>Auto-updating"]
     end
 
-    A --> B --> D
-    C --> G
-    F --> G
-    I --> J
-    I --> K
-    J --> L
+    POP --> RE & HM
+    OPT --> RE & SD
+    CS --> RE & SD & HM
 
-    subgraph Storage["💾 Local Storage"]
-        M[(History)]
-        N[(Settings)]
-        O[(Custom Rules)]
-    end
+    RE <-->|Fetch/Cache| REMOTE
+    RE --> RULES
+    HM --> HIST
+    OPT --> SETT
 
-    L --> M
-    G --> N
-    Rules --> O
+    style Extension fill:#12121f,stroke:#00ffff,color:#fff
+    style Libs fill:#1a1a2e,stroke:#ff00ff,color:#fff
+    style Storage fill:#0a0a14,stroke:#00ffff,color:#fff
+    style Remote fill:#12121f,stroke:#ff00ff,color:#fff
 ```
 
 ### Data Flow
@@ -259,78 +337,89 @@ flowchart TB
 sequenceDiagram
     participant U as User
     participant CS as Content Script
-    participant SD as SiteDetector
-    participant RE as RulesEngine
-    participant HM as HistoryManager
-    participant ST as Chrome Storage
+    participant RE as Rules Engine
+    participant GH as GitHub
+    participant ST as Storage
 
     U->>CS: Click haKC button
-    CS->>SD: getCurrentSite()
-    SD-->>CS: Site config + selectors
-    CS->>CS: getInputText()
-    CS->>RE: analyze(text, options)
-    RE->>RE: Apply compression rules
-    RE->>RE: Calculate statistics
-    RE-->>CS: {optimized, stats, appliedRules}
-    CS->>U: Show optimization modal
-    U->>CS: Click "Apply"
-    CS->>CS: setInputText(optimized)
-    CS->>HM: addEntry(historyData)
-    HM->>ST: Save to chrome.storage
-    ST-->>HM: Confirmed
-    CS->>U: Toast "Prompt optimized!"
-```
+    CS->>RE: analyze(prompt)
 
-### Architecture Overview
-
-```mermaid
-graph LR
-    subgraph Browser["Chrome Browser"]
-        subgraph Extension["PrompthaKCer Extension"]
-            SW[Service Worker]
-            POP[Popup UI]
-            OPT[Options Page]
-            CS[Content Scripts]
-        end
-
-        subgraph Libraries["Shared Libraries"]
-            RE[rules-engine.js]
-            SD[site-detector.js]
-            HM[history-manager.js]
-        end
-
-        subgraph Sites["AI Chat Sites"]
-            GPT[ChatGPT]
-            CL[Claude]
-            GEM[Gemini]
-            OTHER[Other AI Chats...]
-        end
+    alt Rules not cached
+        RE->>GH: Fetch rules.json
+        GH-->>RE: 38 rules (v1.2.0)
+        RE->>ST: Cache rules
     end
 
-    POP --> RE
-    POP --> HM
-    OPT --> RE
-    OPT --> SD
-    CS --> RE
-    CS --> SD
-    CS --> HM
+    RE->>RE: Apply compression rules
+    RE->>RE: Redact sensitive data
+    RE->>RE: Calculate statistics
+    RE-->>CS: {optimized, stats}
 
-    CS -.->|Inject button| GPT
-    CS -.->|Inject button| CL
-    CS -.->|Inject button| GEM
-    CS -.->|Inject button| OTHER
-
-    SW -->|Context menu| CS
-    SW -->|Messages| POP
+    CS->>U: Show modal with results
+    U->>CS: Apply optimized prompt
+    CS->>ST: Save to history
+    CS->>U: "Prompt optimized!"
 ```
 
 ---
 
-## Project Structure
+## ⬡ Custom Rules
+
+Create your own optimization rules in **Settings > Rules > Add Custom Rule**:
+
+```javascript
+// Example: Remove all emoji
+{
+  name: "Remove Emoji",
+  pattern: "[\\u{1F300}-\\u{1F9FF}]",
+  flags: "gu",
+  replace: ""
+}
+
+// Example: Shorten common phrase
+{
+  name: "Shorten Please Note",
+  pattern: "please note that",
+  flags: "gi",
+  replace: "note:"
+}
+```
+
+---
+
+## ⬡ Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl+Shift+O` | Optimize prompt on page |
+| `Alt+P` | Open popup |
+
+Customize at `chrome://extensions/shortcuts`
+
+---
+
+## ⬡ Privacy
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Data%20Collection-None-00ff00?style=for-the-badge&labelColor=0a0a14" alt="No Data Collection">
+  <img src="https://img.shields.io/badge/Processing-100%25%20Local-00ffff?style=for-the-badge&labelColor=0a0a14" alt="Local Processing">
+  <img src="https://img.shields.io/badge/External%20Servers-None-00ff00?style=for-the-badge&labelColor=0a0a14" alt="No Servers">
+</p>
+
+- **100% Local**: All processing happens in your browser
+- **No Data Collection**: We don't collect any user data
+- **No External Servers**: Your prompts never leave your device
+- **Open Source**: Full code transparency
+- **Export/Delete**: Full control over your history
+
+---
+
+## ⬡ Project Structure
 
 ```
 prompthakcer/
 ├── manifest.json           # Chrome extension manifest (MV3)
+├── rules.json              # Remote-synced optimization rules
 ├── background/
 │   └── service-worker.js   # Background service worker
 ├── content/
@@ -338,78 +427,46 @@ prompthakcer/
 │   └── modal.css           # On-page modal styles
 ├── lib/
 │   ├── rules-engine.js     # Core optimization engine
-│   ├── site-detector.js    # Site detection and configuration
-│   └── history-manager.js  # History and stats management
+│   ├── site-detector.js    # Site detection and config
+│   └── history-manager.js  # History management
 ├── popup/
-│   ├── popup.html          # Extension popup
-│   ├── popup.css           # Popup styles
-│   └── popup.js            # Popup logic
+│   ├── popup.html/css/js   # Extension popup
 ├── options/
-│   ├── options.html        # Settings page
-│   ├── options.css         # Settings styles
-│   └── options.js          # Settings logic
-├── icons/
-│   ├── icon16.png
-│   ├── icon32.png
-│   ├── icon48.png
-│   └── icon128.png
-└── README.md
+│   ├── options.html/css/js # Settings page
+└── icons/
+    └── icon*.png           # Extension icons
 ```
 
 ---
 
-## Privacy
+## ⬡ Contributing
 
-PrompthaKCer respects your privacy:
-
-- **100% Local**: All processing happens in your browser
-- **No Data Collection**: We don't collect any user data
-- **No External Servers**: Your prompts never leave your device
-- **Open Source**: Full code transparency
-
-Your prompt history is stored locally using Chrome's storage API and can be exported or deleted at any time.
-
----
-
-## Contributing
-
-Contributions are welcome! Here's how you can help:
+<p align="center">
+  <a href="https://github.com/haKC-ai/prompthakcer/issues/new?template=bug_report.md"><img src="https://img.shields.io/badge/Report-Bug-ff0000?style=for-the-badge&logo=github&labelColor=0a0a14" alt="Report Bug"></a>
+  <a href="https://github.com/haKC-ai/prompthakcer/issues/new?template=feature_request.md"><img src="https://img.shields.io/badge/Request-Feature-00ffff?style=for-the-badge&logo=github&labelColor=0a0a14" alt="Feature Request"></a>
+  <a href="https://github.com/haKC-ai/prompthakcer/pulls"><img src="https://img.shields.io/badge/Submit-PR-ff00ff?style=for-the-badge&logo=github&labelColor=0a0a14" alt="Submit PR"></a>
+</p>
 
 1. **Report Bugs**: Open an issue with reproduction steps
 2. **Suggest Features**: We'd love to hear your ideas
 3. **Submit PRs**: Bug fixes and improvements welcome
-4. **Share Rules**: Contribute useful custom rules
+4. **Share Rules**: Contribute useful optimization patterns
 
 ---
 
-## Changelog
+## ⬡ Support
 
-### v1.0.0 (Initial Release)
-- 30+ built-in optimization rules
-- 5 compression levels
-- Support for 10+ AI platforms
-- Custom site configuration
-- Custom rule creation
-- Prompt history with export/import
-- Educational learning section
-- Context menu integration
-- Keyboard shortcuts
-
----
-
-## License
-
-MIT License - feel free to modify and distribute.
-
----
-
-## Support
-
-- **Issues**: https://github.com/haKC-ai/prompthakcer/issues
-- **Email**: cory@hakc.ai
+<p align="center">
+  <a href="https://github.com/haKC-ai/prompthakcer/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=for-the-badge&logo=github&labelColor=0a0a14" alt="GitHub Issues"></a>
+  <a href="mailto:cory@hakc.ai"><img src="https://img.shields.io/badge/Email-cory%40hakc.ai-EA4335?style=for-the-badge&logo=gmail&labelColor=0a0a14" alt="Email"></a>
+</p>
 
 ---
 
 <p align="center">
-  Made with care for efficient prompting
+  <img src="icons/icon48.png" alt="⬡" width="24">
+  <br>
+  <strong>Don't just chat. haKC.</strong>
+  <br>
+  <sub>Made with ⬡ by <a href="https://hakc.ai">haKC.ai</a></sub>
 </p>
