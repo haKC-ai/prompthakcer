@@ -26,10 +26,10 @@ In the age of AI, your prompt is your power. But are you leaking sensitive data?
 
 **Prompt haKCer** gives you the control you deserve:
 
-*   **🛡️ Stop Data Leaks (DLP):** Automatically redact credit cards, emails, and API keys *before* they leave your browser. Don't let a copy-paste error compromise your security.
-*   **💰 Slash Token Costs:** Reduce prompt size by up to 70% without losing meaning. Save money on API calls and fit more context into limited windows.
-*   **🧠 Boost AI Performance:** Models follow clear, concise instructions better. Strip the fluff and get sharper, more accurate responses.
-*   **⚡ Workflow Velocity:** Optimize with a single click or hotkey. No more manual editing or second-guessing.
+*   **Stop Data Leaks (DLP):** Automatically redact credit cards, emails, and API keys *before* they leave your browser. Don't let a copy-paste error compromise your security.
+*   **Slash Token Costs:** Reduce prompt size by up to 70% without losing meaning. Save money on API calls and fit more context into limited windows.
+*   **Boost AI Performance:** Models follow clear, concise instructions better. Strip the fluff and get sharper, more accurate responses.
+*   **Workflow Velocity:** Optimize with a single click or hotkey. No more manual editing or second-guessing.
 
 Don't just chat. **haKC.**
 
