@@ -1,5 +1,5 @@
 /**
- * PromptForge Background Service Worker v2.0
+ * PrompthaKCer Background Service Worker v2.0
  * Handles context menus, keyboard shortcuts, and dynamic script injection
  */
 
@@ -28,7 +28,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
       }
     });
 
-    console.log('PromptForge installed and initialized');
+    console.log('PrompthaKCer installed and initialized');
   }
 
   // Setup context menus
@@ -107,28 +107,28 @@ function setupContextMenus() {
   chrome.contextMenus.removeAll(() => {
     // Main optimization menu
     chrome.contextMenus.create({
-      id: 'promptforge-optimize',
-      title: 'Optimize with PromptForge',
+      id: 'prompthakcer-optimize',
+      title: 'Optimize with PrompthaKCer',
       contexts: ['selection']
     });
 
     // Copy optimized
     chrome.contextMenus.create({
-      id: 'promptforge-copy',
+      id: 'prompthakcer-copy',
       title: 'Optimize and Copy',
       contexts: ['selection']
     });
 
     // Separator
     chrome.contextMenus.create({
-      id: 'promptforge-separator',
+      id: 'prompthakcer-separator',
       type: 'separator',
       contexts: ['selection']
     });
 
     // Compression presets submenu
     chrome.contextMenus.create({
-      id: 'promptforge-presets',
+      id: 'prompthakcer-presets',
       title: 'Compression Level',
       contexts: ['selection']
     });
@@ -143,9 +143,9 @@ function setupContextMenus() {
 
     presets.forEach(preset => {
       chrome.contextMenus.create({
-        id: `promptforge-preset-${preset.id}`,
+        id: `prompthakcer-preset-${preset.id}`,
         title: preset.title,
-        parentId: 'promptforge-presets',
+        parentId: 'prompthakcer-presets',
         contexts: ['selection']
       });
     });
@@ -156,7 +156,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   const selectedText = info.selectionText;
   if (!selectedText) return;
 
-  if (info.menuItemId === 'promptforge-optimize') {
+  if (info.menuItemId === 'prompthakcer-optimize') {
     // Try to inject and send to content script
     if (tab?.id) {
       await injectContentScripts(tab.id);
@@ -174,14 +174,14 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     }
   }
 
-  if (info.menuItemId === 'promptforge-copy') {
+  if (info.menuItemId === 'prompthakcer-copy') {
     const optimized = await optimizeInBackground(selectedText);
     await copyToClipboard(optimized.optimized);
     showNotification('Optimized & Copied!', `Saved ${optimized.stats.tokensSaved} tokens`);
   }
 
-  if (info.menuItemId.startsWith('promptforge-preset-')) {
-    const preset = info.menuItemId.replace('promptforge-preset-', '');
+  if (info.menuItemId.startsWith('prompthakcer-preset-')) {
+    const preset = info.menuItemId.replace('prompthakcer-preset-', '');
     await chrome.storage.sync.set({ compressionPreset: preset });
     showNotification('Compression Changed', `Set to ${preset}`);
   }
@@ -518,4 +518,4 @@ chrome.runtime.onStartup.addListener(() => {
   setupContextMenus();
 });
 
-console.log('PromptForge service worker loaded');
+console.log('PrompthaKCer service worker loaded');
