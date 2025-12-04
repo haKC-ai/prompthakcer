@@ -1,7 +1,7 @@
-# PromptForge - AI Prompt Optimizer
+# Prompt haKCer - AI Prompt Optimizer
 
 <p align="center">
-  <img src="icons/icon128.png" alt="PromptForge Logo" width="128" height="128">
+  <img src="icons/icon128.png" alt="PrompthaKCer Logo" width="128" height="128">
 </p>
 
 <p align="center">
@@ -49,7 +49,7 @@
 ## Installation
 
 ### From Chrome Web Store
-1. Visit the [PromptForge Chrome Web Store page](#)
+1. Visit the [PrompthaKCer Chrome Web Store page](#)
 2. Click "Add to Chrome"
 3. Click "Add Extension" to confirm
 
@@ -58,7 +58,7 @@
 2. Open Chrome and go to `chrome://extensions/`
 3. Enable "Developer mode" (top right toggle)
 4. Click "Load unpacked"
-5. Select the `promptforge` folder
+5. Select the `prompthakcer` folder
 6. The extension icon appears in your toolbar
 
 ---
@@ -68,12 +68,12 @@
 ### On AI Chat Pages
 1. Navigate to any supported AI chat (ChatGPT, Claude, etc.)
 2. Type your prompt in the input field
-3. Click the forge button or press `Ctrl+Shift+O`
+3. Click the haKC button or press `Ctrl+Shift+O`
 4. Review the optimized version
 5. Click "Apply" to use it
 
 ### Standalone Mode (Popup)
-1. Click the PromptForge icon in your toolbar
+1. Click the PrompthaKCer icon in your toolbar
 2. Paste or type your prompt
 3. Choose compression level
 4. Click "Optimize Prompt"
@@ -81,7 +81,7 @@
 
 ### Right-Click Context Menu
 1. Select text anywhere on a page
-2. Right-click and select "Optimize with PromptForge"
+2. Right-click and select "Optimize with PrompthaKCer"
 3. The optimized text is copied to clipboard
 
 ---
@@ -173,7 +173,7 @@ Replace: (empty)
 | Shortcut | Action |
 |----------|--------|
 | `Ctrl+Shift+O` | Optimize current prompt on page |
-| `Alt+P` | Open PromptForge popup |
+| `Alt+P` | Open PrompthaKCer popup |
 
 Customize shortcuts at `chrome://extensions/shortcuts`
 
@@ -185,7 +185,7 @@ Customize shortcuts at `chrome://extensions/shortcuts`
 flowchart TB
     subgraph User["👤 User"]
         A[Type prompt in AI chat]
-        B[Click PromptForge button]
+        B[Click PrompthaKCer button]
         C[Use popup standalone]
     end
 
@@ -248,7 +248,7 @@ sequenceDiagram
     participant HM as HistoryManager
     participant ST as Chrome Storage
 
-    U->>CS: Click forge button
+    U->>CS: Click haKC button
     CS->>SD: getCurrentSite()
     SD-->>CS: Site config + selectors
     CS->>CS: getInputText()
@@ -270,7 +270,7 @@ sequenceDiagram
 ```mermaid
 graph LR
     subgraph Browser["Chrome Browser"]
-        subgraph Extension["PromptForge Extension"]
+        subgraph Extension["PrompthaKCer Extension"]
             SW[Service Worker]
             POP[Popup UI]
             OPT[Options Page]
@@ -313,7 +313,7 @@ graph LR
 ## Project Structure
 
 ```
-promptforge/
+prompthakcer/
 ├── manifest.json           # Chrome extension manifest (MV3)
 ├── background/
 │   └── service-worker.js   # Background service worker
@@ -344,7 +344,7 @@ promptforge/
 
 ## Privacy
 
-PromptForge respects your privacy:
+PrompthaKCer respects your privacy:
 
 - **100% Local**: All processing happens in your browser
 - **No Data Collection**: We don't collect any user data
@@ -389,7 +389,7 @@ MIT License - feel free to modify and distribute.
 
 ## Support
 
-- **Issues**: https://github.com/haKC-ai/promptforge/issues
+- **Issues**: https://github.com/haKC-ai/prompthakcer/issues
 - **Email**: cory@hakc.ai
 
 ---

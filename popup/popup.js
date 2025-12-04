@@ -1,5 +1,5 @@
 /**
- * PromptForge Popup Script v2.0
+ * PrompthaKCer Popup Script v2.0
  * Standalone optimizer with history and learning features
  */
 
@@ -516,7 +516,7 @@ async function exportHistory() {
   
   const a = document.createElement('a');
   a.href = url;
-  a.download = `promptforge-history-${new Date().toISOString().split('T')[0]}.json`;
+  a.download = `prompthakcer-history-${new Date().toISOString().split('T')[0]}.json`;
   a.click();
   
   URL.revokeObjectURL(url);
@@ -563,7 +563,7 @@ async function renderInsights() {
         <div class="tip-icon">[TIP]</div>
         <div class="tip-content">
           <h4>Most Used</h4>
-          <p>You use PromptForge most on <strong>${topSite[0]}</strong> (${topSite[1]} prompts).</p>
+          <p>You use PrompthaKCer most on <strong>${topSite[0]}</strong> (${topSite[1]} prompts).</p>
         </div>
       </div>
     `;
