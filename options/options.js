@@ -1,5 +1,5 @@
 /**
- * PromptForge Options Page Script v2.0
+ * PrompthaKCer Options Page Script v2.0
  */
 
 let rulesEngine;
@@ -354,7 +354,7 @@ async function exportHistory() {
   
   const a = document.createElement('a');
   a.href = url;
-  a.download = `promptforge-history-${new Date().toISOString().split('T')[0]}.json`;
+  a.download = `prompthakcer-history-${new Date().toISOString().split('T')[0]}.json`;
   a.click();
   
   URL.revokeObjectURL(url);

@@ -3,6 +3,73 @@
   "updated": "2025-12-03",
   "rules": [
     {
+      "id": "redact-credit-cards",
+      "name": "Redact Credit Cards",
+      "description": "Redacts potential credit card numbers",
+      "explanation": "Prevents sending payment information to AI models.",
+      "example": { "before": "My card is 4532 1234 5678 9012", "after": "My card is [REDACTED CREDIT CARD]" },
+      "enabled": true,
+      "category": "security",
+      "priority": 1,
+      "patterns": [
+        { "find": "\\b(?:\\d[ -]*?){13,16}\\b", "flags": "g", "replace": "[REDACTED CREDIT CARD]" }
+      ]
+    },
+    {
+      "id": "redact-email",
+      "name": "Redact Email Addresses",
+      "description": "Redacts email addresses",
+      "explanation": "Prevents sharing personal contact information.",
+      "example": { "before": "Contact me at user@example.com", "after": "Contact me at [REDACTED EMAIL]" },
+      "enabled": true,
+      "category": "security",
+      "priority": 1,
+      "patterns": [
+        { "find": "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b", "flags": "g", "replace": "[REDACTED EMAIL]" }
+      ]
+    },
+    {
+      "id": "redact-ipv4",
+      "name": "Redact IP Addresses",
+      "description": "Redacts IPv4 addresses",
+      "explanation": "Prevents exposing internal network infrastructure.",
+      "example": { "before": "Server is at 192.168.1.1", "after": "Server is at [REDACTED IP]" },
+      "enabled": true,
+      "category": "security",
+      "priority": 1,
+      "patterns": [
+        { "find": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b", "flags": "g", "replace": "[REDACTED IP]" }
+      ]
+    },
+    {
+      "id": "redact-ssn",
+      "name": "Redact SSN",
+      "description": "Redacts Social Security Numbers",
+      "explanation": "Protects sensitive personal identification numbers.",
+      "example": { "before": "SSN: 123-45-6789", "after": "SSN: [REDACTED SSN]" },
+      "enabled": true,
+      "category": "security",
+      "priority": 1,
+      "patterns": [
+        { "find": "\\b\\d{3}-\\d{2}-\\d{4}\\b", "flags": "g", "replace": "[REDACTED SSN]" }
+      ]
+    },
+    {
+      "id": "redact-api-keys",
+      "name": "Redact API Keys",
+      "description": "Redacts potential API keys",
+      "explanation": "Prevents accidental leakage of secrets and tokens.",
+      "example": { "before": "Key: sk-12345abcdef", "after": "Key: [REDACTED API KEY]" },
+      "enabled": true,
+      "category": "security",
+      "priority": 1,
+      "patterns": [
+        { "find": "\\b(sk-[a-zA-Z0-9]{20,})\\b", "flags": "g", "replace": "[REDACTED API KEY]" },
+        { "find": "\\b(ghp_[a-zA-Z0-9]{36})\\b", "flags": "g", "replace": "[REDACTED API KEY]" },
+        { "find": "\\b(xoxb-[a-zA-Z0-9-]{10,})\\b", "flags": "g", "replace": "[REDACTED API KEY]" }
+      ]
+    },
+    {
       "id": "remove-greetings",
       "name": "Remove Greetings",
       "description": "Removes \"Hey there\", \"Hope you're well\" etc.",
