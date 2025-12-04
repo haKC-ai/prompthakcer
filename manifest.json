@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "PrompthaKCer - AI Prompt Optimizer",
-  "version": "1.0.5",
-  "description": "Optimize AI prompts for efficiency. Reduce tokens, improve clarity, and learn better prompting. Works with any AI chat.",
+  "name": "Prompt haKCer - haKC your prompts",
+  "version": "23.0",
+  "description": "Master your AI interactions. Optimize prompts to save tokens, enhance clarity, and prevent data leaks. Secure, efficient, and powerful.",
   "permissions": [
     "storage",
     "activeTab",

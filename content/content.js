@@ -30,7 +30,7 @@ class PrompthaKCer {
     
     // Check if on supported site
     if (!this.siteDetector.isOnSupportedSite()) {
-      console.log('PrompthaKCer: Not on a supported AI chat site');
+      // console.log('PrompthaKCer: Not on a supported AI chat site');
       return;
     }
     
@@ -79,11 +79,11 @@ class PrompthaKCer {
     if (!site) return;
 
     const attachToInput = (input) => {
-      if (input.dataset.promptforgeAttached) return;
-      input.dataset.promptforgeAttached = 'true';
+      if (input.dataset.prompthakcerAttached) return;
+      input.dataset.prompthakcerAttached = 'true';
       
-      // Add the forge button
-      this.addForgeButton(input);
+      // Add the haKC button
+      this.addHaKCButton(input);
       
       // Track focus
       input.addEventListener('focus', () => {
@@ -99,13 +99,13 @@ class PrompthaKCer {
     this.attachToInput = attachToInput;
   }
 
-  addForgeButton(input) {
+  addHaKCButton(input) {
     // Find appropriate container
     const container = this.findButtonContainer(input);
-    if (!container || container.querySelector('.promptforge-trigger')) return;
+    if (!container || container.querySelector('.prompthakcer-trigger')) return;
 
     const button = document.createElement('button');
-    button.className = 'promptforge-trigger';
+    button.className = 'prompthakcer-trigger';
     button.innerHTML = `
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
@@ -124,7 +124,7 @@ class PrompthaKCer {
       button.style.left = `${this.buttonPosition.x}px`;
       button.style.top = `${this.buttonPosition.y}px`;
       button.style.transform = 'none';
-      button.classList.add('promptforge-trigger-fixed');
+      button.classList.add('prompthakcer-trigger-fixed');
     }
 
     // Dragging state
@@ -144,7 +144,7 @@ class PrompthaKCer {
       initialY = rect.top;
 
       button.style.cursor = 'grabbing';
-      button.classList.add('promptforge-dragging');
+      button.classList.add('prompthakcer-dragging');
       e.preventDefault();
     };
 
@@ -162,7 +162,7 @@ class PrompthaKCer {
         button.style.position = 'fixed';
         button.style.right = 'auto';
         button.style.transform = 'none';
-        button.classList.add('promptforge-trigger-fixed');
+        button.classList.add('prompthakcer-trigger-fixed');
 
         const newX = initialX + deltaX;
         const newY = initialY + deltaY;
@@ -180,7 +180,7 @@ class PrompthaKCer {
       if (!isDragging) return;
       isDragging = false;
       button.style.cursor = '';
-      button.classList.remove('promptforge-dragging');
+      button.classList.remove('prompthakcer-dragging');
 
       if (hasMoved) {
         // Save the new position
@@ -271,10 +271,10 @@ class PrompthaKCer {
   }
 
   createModal() {
-    if (document.getElementById('promptforge-modal')) return;
+    if (document.getElementById('prompthakcer-modal')) return;
 
     const modal = document.createElement('div');
-    modal.id = 'promptforge-modal';
+    modal.id = 'prompthakcer-modal';
     modal.innerHTML = `
       <div class="pf-modal-backdrop"></div>
       <div class="pf-modal-container">

@@ -1,16 +1,16 @@
-# Privacy Policy for PromptForge
+# Privacy Policy for PrompthaKCer
 
 **Last Updated: December 2024**
 
 ## Overview
 
-PromptForge ("we", "our", or "the extension") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our Chrome extension.
+PrompthaKCer ("we", "our", or "the extension") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our Chrome extension.
 
 ## Data Collection
 
 **We do not collect any personal data.**
 
-PromptForge operates entirely locally within your browser. We do not:
+PrompthaKCer operates entirely locally within your browser. We do not:
 - Collect, transmit, or store any personal information
 - Send your prompts or data to external servers
 - Use analytics or tracking services
@@ -48,7 +48,7 @@ You have full control over your data:
 
 ## Permissions
 
-PromptForge requests the following permissions:
+PrompthaKCer requests the following permissions:
 
 | Permission | Purpose |
 |------------|---------|
@@ -60,7 +60,7 @@ PromptForge requests the following permissions:
 
 ## Third-Party Services
 
-PromptForge does not integrate with any third-party services. All functionality is self-contained within the extension.
+PrompthaKCer does not integrate with any third-party services. All functionality is self-contained within the extension.
 
 ## Data Security
 
@@ -71,7 +71,7 @@ Since all data remains on your local device:
 
 ## Children's Privacy
 
-PromptForge does not knowingly collect information from children under 13. The extension is intended for general audiences.
+PrompthaKCer does not knowingly collect information from children under 13. The extension is intended for general audiences.
 
 ## Changes to This Policy
 
@@ -79,15 +79,15 @@ We may update this Privacy Policy from time to time. Any changes will be posted 
 
 ## Open Source
 
-PromptForge is open source. You can review our code to verify our privacy practices at:
-https://github.com/haKC-ai/promptforge
+PrompthaKCer is open source. You can review our code to verify our privacy practices at:
+https://github.com/haKC-ai/prompthakcer
 
 ## Contact
 
 If you have questions about this Privacy Policy, please contact us at:
 - Email: cory@hakc.ai
-- GitHub: https://github.com/haKC-ai/promptforge/issues
+- GitHub: https://github.com/haKC-ai/prompthakcer/issues
 
 ---
 
-**Summary**: PromptForge runs 100% locally in your browser. We don't collect, transmit, or have access to any of your data. Your prompts and settings stay on your device.
+**Summary**: PrompthaKCer runs 100% locally in your browser. We don't collect, transmit, or have access to any of your data. Your prompts and settings stay on your device.
