@@ -27,9 +27,8 @@
 
 ---
 
-<p align="left">
+<p align="center">
   <a href="https://github.com/haKC-ai/prompthakcer/releases"><img src="https://img.shields.io/github/v/release/haKC-ai/prompthakcer?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a14&color=00ffff" alt="Release"></a>
-  <a href="https://github.com/haKC-ai/prompthakcer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/haKC-ai/prompthakcer?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=0a0a14&color=00ffff" alt="License"></a>
   <a href="https://github.com/haKC-ai/prompthakcer/stargazers"><img src="https://img.shields.io/github/stars/haKC-ai/prompthakcer?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a14&color=ff00ff" alt="Stars"></a>
   <a href="https://github.com/haKC-ai/prompthakcer/issues"><img src="https://img.shields.io/github/issues/haKC-ai/prompthakcer?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a14&color=00ffff" alt="Issues"></a>
 </p>
@@ -128,7 +127,7 @@ mindmap
 - **Export/Import**: Backup your history and settings
 
 ### Fully Customizable
-- **Toggle Individual Rules**: Fine-tune which optimizations apply
+- **Toggle Individual Rules**: Fine-tune which CARE/CRAFT Framework based rule optimizations apply
 - **Custom Rules**: Create your own regex-based rules
 - **Site Configuration**: Enable/disable for specific platforms
 - **Keyboard Shortcuts**: Quick access with `Ctrl+Shift+O`
