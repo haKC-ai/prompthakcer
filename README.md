@@ -38,7 +38,7 @@
 
 ## ⬡ Why You NEED This
 
-<img width="2480" height="1609" alt="Screenshot 2025-12-04 at 3 19 40 PM" src="https://github.com/user-attachments/assets/bf24b8ff-c9eb-4953-8736-4564f5bc6bc2" />
+<img width="1669" height="933" alt="Screenshot 2025-12-06 at 10 28 49 AM" src="https://github.com/user-attachments/assets/f672144c-455b-436e-b1ab-34ee3fbaa50c" />
 
 In the age of AI, your prompt is your power. But are you leaking sensitive data? Wasting tokens on fluff? Confusing the model with verbose instructions?
 
