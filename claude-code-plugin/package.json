@@ -1,0 +1,16 @@
+{
+  "name": "prompthakcer-claude-code-plugin",
+  "version": "1.0.0",
+  "description": "PrompthaKCer plugin for Claude Code - automatic DLP scanning, prompt optimization, and token savings",
+  "main": "rules-engine.js",
+  "bin": {
+    "prompthakcer": "./optimize.js"
+  },
+  "scripts": {
+    "optimize": "node optimize.js",
+    "stats": "node stats.js",
+    "test": "node test.js"
+  },
+  "keywords": ["claude-code", "prompt-optimization", "dlp", "security", "token-savings"],
+  "license": "MIT"
+}

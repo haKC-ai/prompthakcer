@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|Bash|NotebookEdit",
+        "command": "node claude-code-plugin/hook-pre-tool-use.js"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "command": "node claude-code-plugin/hook-post-tool-use.js"
+      }
+    ]
+  }
+}
